@@ -1,14 +1,11 @@
-NAME = push_swap.a
+NAME = push_swap
 CC = cc
 LIBFT = $(LIBFT_DIR)libft.a
 LIBFT_DIR = ./Libft/
 INC_DIR = includes
 SRC_DIR = srcs
 SRCFILES = main.c \
-
-
-
-			
+			error.c \
 
 CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR)
 
@@ -18,7 +15,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJS) 
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
 
 $(LIBFT): 
 	make -C $(LIBFT_DIR) 
