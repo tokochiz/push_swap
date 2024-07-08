@@ -6,6 +6,7 @@ INC_DIR = includes
 SRC_DIR = srcs
 SRCFILES = main.c \
 			error.c \
+			sort.c 
 
 CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR)
 

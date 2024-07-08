@@ -6,7 +6,7 @@
 /*   By:  ctokoyod < ctokoyod@student.42tokyo.jp    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:03:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/07/04 22:56:25 by  ctokoyod        ###   ########.fr       */
+/*   Updated: 2024/07/08 22:20:58 by  ctokoyod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	parse_args(int argc, char *argv[], t_ps *stack)
 	int		i;
 	int		value;
 	int		error;
+	int		*value_p;
 	t_list	*new_node;
 
 	i = 0;
@@ -25,12 +26,19 @@ void	parse_args(int argc, char *argv[], t_ps *stack)
 		value = ft_atoi_with_error(argv[i], &error);
 		if (error != 0)
 		{
-			printf("Error list1: Undefined error: %d\n", error);
 			put_error_and_exit(ERR_LST1);
 		}
-		new_node = ft_lstnew((void *)(intptr_t)value);
-		if (!new_node)
+		value_p = malloc(sizeof(int));
+		if (value_p == NULL)
 			put_error_and_exit(ERR_LST2);
+		*value_p = value;
+		
+		new_node = ft_lstnew(value_p);
+		if (new_node == NULL)
+		{
+			free(value_p);
+			put_error_and_exit(ERR_LST2);
+		}
 		ft_lstadd_back(&(stack->a->top), new_node);
 		i++;
 	}
@@ -41,7 +49,7 @@ void	initialize(t_ps *stack)
 {
 	stack->a = (t_stack *)malloc(sizeof(t_stack));
 	stack->b = (t_stack *)malloc(sizeof(t_stack));
-	if (!stack->a || !stack->b)
+	if (stack->a == NULL || stack->b == NULL)
 		put_error_and_exit(ERR_MALLOC);
 	stack->a->top = NULL;
 	stack->a->size = 0;
@@ -80,7 +88,17 @@ int	main(int argc, char *argv[])
 	parse_args(argc - 1, argv + 1, &stack);
 	/****デバック用****/
 	print_stack(stack.a, 'A');
+	print_stack(stack.b, 'B');
+
 	// TODO : sort関数
-	// TODO :  スタックAからスタックBに移動させる
-	// TODO :  スタックBからスタックAに移動させる　この時にルールを守って操作
+	if (is_sorted(&stack) == TRUE)
+		printf("test1");
+	else
+		printf("test2");
+	// sort_stack(&stack);
+	// 操作の出力
+	// print_operations(&stack);
+	// メモリの解放
+	// free_ps(&stack);
+	return (0);
 }
