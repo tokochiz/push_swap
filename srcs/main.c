@@ -6,7 +6,7 @@
 /*   By:  ctokoyod < ctokoyod@student.42tokyo.jp    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:03:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/07/08 22:20:58 by  ctokoyod        ###   ########.fr       */
+/*   Updated: 2024/07/09 21:54:16 by  ctokoyod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,14 @@ int	main(int argc, char *argv[])
 	print_stack(stack.b, 'B');
 
 	// TODO : sort関数
-	if (is_sorted(&stack) == TRUE)
-		printf("test1");
+	if (is_sorted(&stack) != TRUE)
+	{
+		sort_stack(&stack);
+		printf("Not sorted\n");
+	}
 	else
-		printf("test2");
-	// sort_stack(&stack);
+		printf("Already sorted\n");
+
 	// 操作の出力
 	// print_operations(&stack);
 	// メモリの解放

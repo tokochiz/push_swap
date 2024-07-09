@@ -6,7 +6,7 @@
 /*   By:  ctokoyod < ctokoyod@student.42tokyo.jp    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:05:12 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/07/08 21:45:44 by  ctokoyod        ###   ########.fr       */
+/*   Updated: 2024/07/09 22:01:18 by  ctokoyod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,17 @@ void				put_error_and_exit(const char *msg);
 
 // sort
 bool				is_sorted(t_ps *stack);
+
+void        sa(t_ps *stack);
+void        sb(t_ps *stack);
+void        ss(t_ps *stack);
+void        pa(t_ps *stack);
+void        pb(t_ps *stack);
+void        ra(t_ps *stack);
+void        rb(t_ps *stack);
+void        rr(t_ps *stack);
+void        rra(t_ps *stack);
+void        rrb(t_ps *stack);
+void        rrr(t_ps *stack);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By:  ctokoyod < ctokoyod@student.42tokyo.jp    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 20:37:09 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/07/08 22:20:47 by  ctokoyod        ###   ########.fr       */
+/*   Updated: 2024/07/09 21:48:55 by  ctokoyod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ bool	is_sorted(t_ps *stack)
 		return (FALSE);
 	// 現在の要素＝先頭の要素の値をprevに設定、
 	prev_value = *(int *)(current->content);
+	
+	// current ポインタを次の要素に移動
 	current = current->next;
 	while (current != NULL)
 	{
@@ -37,3 +39,4 @@ bool	is_sorted(t_ps *stack)
 	}
 	return (TRUE);
 }
+
