@@ -6,7 +6,7 @@
 /*   By:  ctokoyod < ctokoyod@student.42tokyo.jp    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:49:24 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/07/16 20:20:36 by  ctokoyod        ###   ########.fr       */
+/*   Updated: 2024/07/16 20:23:10 by  ctokoyod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	sort_stack(t_ps *ps)
 	while (ps->b->size > 0)
 	{
 		optimize_and_move_b_to_a(ps);
-		adjust_stack_b(ps);
 		update_min_max_b(ps);
 		printf("stack b min:%d max:%d\n", ps->min_b, ps->max_b);
 	}
