@@ -6,8 +6,9 @@ INC_DIR = includes
 SRC_DIR = srcs
 SRCFILES = main.c \
 			error.c \
-			is_sort.c \
-			sort_stack.c
+			is_sorted.c \
+			sort_stack.c \
+			min_max.c 
 
 CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR)
 

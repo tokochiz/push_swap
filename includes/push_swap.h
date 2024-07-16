@@ -6,7 +6,7 @@
 /*   By:  ctokoyod < ctokoyod@student.42tokyo.jp    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:05:12 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/07/15 19:53:25 by  ctokoyod        ###   ########.fr       */
+/*   Updated: 2024/07/16 19:58:32 by  ctokoyod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,37 +48,43 @@ typedef struct s_ps
 	t_stack			*b;
 	char			**operation;
 	int				*operation_count;
+	int				min_b;
+	int				max_b;
 }					t_ps;
 
 // main
 //!!~~~~~~~~~~~~debag ~~~~~~~~~~~~
-void	print_stack(t_stack *stack, char stack_name);
+void				print_stack(t_stack *stack, char stack_name);
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-void				parse_args(int argc, char *argv[], t_ps *stack);
-void				initialize(t_ps *stack);
+void				parse_args(int argc, char *argv[], t_ps *ps);
+void				initialize(t_ps *ps);
 void				check_argc(int argc);
 
 // error
 void				put_error_and_exit(const char *msg);
 
 // is_sorted
-bool				is_sorted(t_ps *stack);
+bool				is_sorted(t_ps *ps);
 
 // sort_stack
-void	move_a_to_b(t_ps *ps);
-void	sort_stack(t_ps *ps);
+void				move_a_to_b(t_ps *ps);
+void				sort_stack(t_ps *ps);
 
+// min_max
+void				update_min_max_b(t_ps *ps);
+int					find_min(t_stack *stack);
+int					find_max(t_stack *stakc);
 
-void        sa(t_ps *stack);
-void        sb(t_ps *stack);
-void        ss(t_ps *stack);
-void        pa(t_ps *stack);
-void        pb(t_ps *stack);
-void        ra(t_ps *stack);
-void        rb(t_ps *stack);
-void        rr(t_ps *stack);
-void        rra(t_ps *stack);
-void        rrb(t_ps *stack);
-void        rrr(t_ps *stack);
+void				sa(t_ps *stack);
+void				sb(t_ps *stack);
+void				ss(t_ps *stack);
+void				pa(t_ps *stack);
+void				pb(t_ps *stack);
+void				ra(t_ps *stack);
+void				rb(t_ps *stack);
+void				rr(t_ps *stack);
+void				rra(t_ps *stack);
+void				rrb(t_ps *stack);
+void				rrr(t_ps *stack);
 
 #endif
