@@ -3,6 +3,7 @@ CC = cc
 LIBFT = $(LIBFT_DIR)libft.a
 LIBFT_DIR = ./Libft/
 INC_DIR = includes
+OP_DIR = ./$(SRC_DIR)/operations
 SRC_DIR = srcs
 SRCFILES = main.c \
 			error.c \
@@ -10,10 +11,13 @@ SRCFILES = main.c \
 			sort_stack.c \
 			min_max.c 
 
+OPFILES = sa_sb.c
+
 CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR)
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRCFILES))
-OBJS = $(SRCS:.c=.o)
+OP_SRCS = $(addprefix $(OP_DIR)/, $(OPFILES))
+OBJS = $(SRCS:.c=.o) $(OP_SRCS:.c=.o)
 
 all: $(NAME)
 

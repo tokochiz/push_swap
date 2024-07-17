@@ -6,7 +6,7 @@
 /*   By:  ctokoyod < ctokoyod@student.42tokyo.jp    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:05:12 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/07/16 19:58:32 by  ctokoyod        ###   ########.fr       */
+/*   Updated: 2024/07/17 20:53:22 by  ctokoyod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define ERR_LST2 "Error list2"
 # define ERR_STACK "ERROR stack "
 
-# define EXIT_FAILUREÏ 1
+# define EXIT_FAILURE 1
 # define TRUE 1
 # define FALSE 0
 
@@ -40,6 +40,7 @@ typedef struct s_stack
 {
 	t_node			*top;
 	int				size;
+	int				*array;
 }					t_stack;
 
 typedef struct s_ps
@@ -54,13 +55,13 @@ typedef struct s_ps
 
 // main
 //!!~~~~~~~~~~~~debag ~~~~~~~~~~~~
-void				print_stack(t_stack *stack, char stack_name);
+void				printf_stack(t_stack *stack, char stack_name);
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 void				parse_args(int argc, char *argv[], t_ps *ps);
 void				initialize(t_ps *ps);
 void				check_argc(int argc);
 
-// error
+// errorprint_stack
 void				put_error_and_exit(const char *msg);
 
 // is_sorted
@@ -75,16 +76,25 @@ void				update_min_max_b(t_ps *ps);
 int					find_min(t_stack *stack);
 int					find_max(t_stack *stakc);
 
-void				sa(t_ps *stack);
-void				sb(t_ps *stack);
-void				ss(t_ps *stack);
-void				pa(t_ps *stack);
-void				pb(t_ps *stack);
-void				ra(t_ps *stack);
-void				rb(t_ps *stack);
-void				rr(t_ps *stack);
-void				rra(t_ps *stack);
-void				rrb(t_ps *stack);
-void				rrr(t_ps *stack);
+// sort_stack
+void				calculate_move_costs(t_ps *ps);
+void				calculate_optimal_target(t_ps *ps);
+void				set_best_move_method(t_ps *ps);
+void				execute_move_method(t_ps *ps);
+void				optimize_stack_a(t_ps *ps);
+
+void				optimize_and_move_b_to_a(t_ps *ps);
+
+void	sa(t_ps *ps);
+int					sb(t_ps *ps);
+void				ss(t_ps *ps);
+void				pa(t_ps *ps);
+void				pb(t_ps *ps);
+void				ra(t_ps *ps);
+void				rb(t_ps *ps);
+void				rr(t_ps *ps);
+void				rra(t_ps *ps);
+void				rrb(t_ps *ps);
+void				rrr(t_ps *ps);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By:  ctokoyod < ctokoyod@student.42tokyo.jp    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:03:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/07/15 19:53:15 by  ctokoyod        ###   ########.fr       */
+/*   Updated: 2024/07/17 20:58:34 by  ctokoyod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ void	parse_args(int argc, char *argv[], t_ps *ps)
 		{
 			put_error_and_exit(ERR_LST1);
 		}
-		// value_p = malloc(sizeof(int));
-		// if (value_p == NULL)
-		// 	put_error_and_exit(ERR_LST2);
-		// *value_p = value;
-		// new_node = ft_lstnew(value_p);
 		new_node = ft_lstnew((void *)(intptr_t)value);
 		if (new_node == NULL)
 		{
@@ -47,12 +42,14 @@ void	initialize(t_ps *ps)
 {
 	ps->a = (t_stack *)malloc(sizeof(t_stack));
 	ps->b = (t_stack *)malloc(sizeof(t_stack));
-	if (ps->a == NULL || ps->b == NULL)
+	ps->operation_count = malloc(sizeof(int));
+	if (ps->a == NULL || ps->b == NULL || ps->operation_count == NULL)
 		put_error_and_exit(ERR_MALLOC);
 	ps->a->top = NULL;
 	ps->a->size = 0;
 	ps->b->top = NULL;
 	ps->b->size = 0;
+	*ps->operation_count = 0;
 }
 
 void	check_argc(int argc)
@@ -60,11 +57,11 @@ void	check_argc(int argc)
 	if (argc < 2)
 		put_error_and_exit(ERR_ARGS);
 }
-/*
- debag
-*/
 
-void	print_stack(t_stack *stack, char stack_name)
+/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+ debag
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
+void	printf_stack(t_stack *stack, char stack_name)
 {
 	t_node	*current;
 
@@ -91,19 +88,26 @@ int	main(int argc, char *argv[])
 	initialize(&ps);
 	parse_args(argc - 1, argv + 1, &ps);
 	/****デバック用****/
-	print_stack(ps.a, 'A');
-	print_stack(ps.b, 'B');
-	// TODO : sort関数
+	printf_stack(ps.a, 'A');
+	printf_stack(ps.b, 'B');
 	if (is_sorted(&ps) != TRUE)
 	{
-		sort_stack(&ps);
-		printf("Not sorted\n");
+		// sort_stack(&ps);
+		printf("Performing sa operation:\n");
+		sa(&ps);
+		printf("After sa:\n");
+		printf_stack(ps.a, 'A');
+		printf("Operation count: %d\n", *ps.operation_count);
 	}
 	else
 		printf("Already sorted\n");
+
 	// 操作の出力
 	// print_operations(&stack);
 	// メモリの解放
 	// free_ps(&stack);
+	// メモリの解放
+	free(ps.a->array);
+	free(ps.a);
 	return (0);
 }
