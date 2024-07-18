@@ -6,7 +6,7 @@
 /*   By:  ctokoyod < ctokoyod@student.42tokyo.jp    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:52:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/07/18 20:10:19 by  ctokoyod        ###   ########.fr       */
+/*   Updated: 2024/07/18 21:17:01 by  ctokoyod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,12 @@ void	sb(t_ps *ps)
 
 void	ss(t_ps *ps)
 {
-	bool	op;
-
-	op = false;
 	if (ps->a->size >= 2 && ps->b->size >= 2)
 	{
 		stack_swap(&ps->a->top);
 		stack_swap(&ps->b->top);
-		op = true;
-	}
-	if (op)
 		(*ps->operation_count)++;
+	}
+	else
+		put_error_and_exit(ERR_OP);
 }
