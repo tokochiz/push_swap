@@ -9,9 +9,11 @@ SRCFILES = main.c \
 			error.c \
 			is_sorted.c \
 			sort_stack.c \
-			min_max.c 
+			min_max.c \
 
-OPFILES = sa_sb.c
+OPFILES = sa_sb_ss.c \
+		  pa_pb.c \
+		  ra_rb_rr.c 
 
 CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR)
 

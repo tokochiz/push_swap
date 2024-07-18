@@ -6,7 +6,7 @@
 /*   By:  ctokoyod < ctokoyod@student.42tokyo.jp    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:03:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/07/17 20:58:34 by  ctokoyod        ###   ########.fr       */
+/*   Updated: 2024/07/18 21:08:51 by  ctokoyod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,77 @@ void	check_argc(int argc)
 		put_error_and_exit(ERR_ARGS);
 }
 
-/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+int	main(int argc, char *argv[])
+{
+	t_ps	ps;
+
+	check_argc(argc);
+	initialize(&ps);
+	parse_args(argc - 1, argv + 1, &ps);
+	/****デバック用****/
+	printf_stack(ps.a, 'A');
+	printf_stack(ps.b, 'B');
+	if (is_sorted(&ps) != TRUE)
+	{
+		// sort_stack(&ps);
+		printf("Performing sa operation:\n");
+		sa(&ps);
+		printf("After sa:\n");
+		printf_stack(ps.a, 'A');
+		printf_stack(ps.b, 'B');
+		pb(&ps);
+		printf("After pb:\n");
+		printf_stack(ps.a, 'A');
+		printf_stack(ps.b, 'B');
+		pb(&ps);
+		printf("After pb:\n");
+		printf_stack(ps.a, 'A');
+		printf_stack(ps.b, 'B');
+		pb(&ps);
+		printf("After pb:\n");
+		printf_stack(ps.a, 'A');
+		printf_stack(ps.b, 'B');
+		sb(&ps);
+		printf("After sb:\n");
+		printf_stack(ps.a, 'A');
+		printf_stack(ps.b, 'B');
+		ss(&ps);
+		printf("After ss:\n");
+		printf_stack(ps.a, 'A');
+		printf_stack(ps.b, 'B');
+		pa(&ps);
+		printf("After pa:\n");
+		printf_stack(ps.a, 'A');
+		printf_stack(ps.b, 'B');
+		ra(&ps);
+		printf("After ra:\n");
+		printf_stack(ps.a, 'A');
+		printf_stack(ps.b, 'B');
+		rb(&ps);
+		printf("After rb:\n");
+		printf_stack(ps.a, 'A');
+		printf_stack(ps.b, 'B');
+		rr(&ps);
+		printf("After rr:\n");
+		printf_stack(ps.a, 'A');
+		printf_stack(ps.b, 'B');
+		printf("Operation count: %d\n", *ps.operation_count);
+	}
+	else
+		printf("Already sorted\n");
+	// 操作の出力
+	// print_operations(&stack);
+	// メモリの解放
+	// free_ps(&stack);
+	// メモリの解放
+	free(ps.a->array);
+	free(ps.a);
+	return (0);
+}
+
+/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
  debag
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
 void	printf_stack(t_stack *stack, char stack_name)
 {
 	t_node	*current;
@@ -79,35 +147,6 @@ void	printf_stack(t_stack *stack, char stack_name)
 	}
 	printf("\n");
 }
-
-int	main(int argc, char *argv[])
-{
-	t_ps	ps;
-
-	check_argc(argc);
-	initialize(&ps);
-	parse_args(argc - 1, argv + 1, &ps);
-	/****デバック用****/
-	printf_stack(ps.a, 'A');
-	printf_stack(ps.b, 'B');
-	if (is_sorted(&ps) != TRUE)
-	{
-		// sort_stack(&ps);
-		printf("Performing sa operation:\n");
-		sa(&ps);
-		printf("After sa:\n");
-		printf_stack(ps.a, 'A');
-		printf("Operation count: %d\n", *ps.operation_count);
-	}
-	else
-		printf("Already sorted\n");
-
-	// 操作の出力
-	// print_operations(&stack);
-	// メモリの解放
-	// free_ps(&stack);
-	// メモリの解放
-	free(ps.a->array);
-	free(ps.a);
-	return (0);
-}
+/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+ debag
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
