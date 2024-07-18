@@ -6,7 +6,7 @@
 /*   By:  ctokoyod < ctokoyod@student.42tokyo.jp    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 19:53:59 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/07/18 20:37:05 by  ctokoyod        ###   ########.fr       */
+/*   Updated: 2024/07/18 21:00:04 by  ctokoyod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	pa(t_ps *ps)
 	t_list	*first;
 
 	if (ps->b->size < 1)
-		put_error_and_exit(ERR_OP);
+		put_error_and_exit(ERR_OP_P);
 	first = ps->b->top;
 	ps->b->top = first->next;
 	ps->b->size--;
@@ -31,7 +31,7 @@ void	pb(t_ps *ps)
 	t_list	*first;
 
 	if (ps->a->size < 1)
-		put_error_and_exit(ERR_OP);
+		put_error_and_exit(ERR_OP_P);
 	first = ps->a->top;
 	ps->a->top = first->next;
 	ps->a->size--;
