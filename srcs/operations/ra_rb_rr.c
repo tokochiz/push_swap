@@ -12,7 +12,7 @@
 
 #include "../../includes/push_swap.h"
 
-void	stack_shift(t_stack *stack)
+void	rotate_top_to_bottom(t_stack *stack)
 {
 	t_list	*first;
 	t_list	*last;
@@ -30,7 +30,7 @@ void	ra(t_ps *ps)
 {
 	if (ps->a->size < 2)
 		put_error_and_exit(ERR_OP);
-	stack_shift(ps->a);
+	rotate_top_to_bottom(ps->a);
 	(*ps->operation_count)++;
 }
 
@@ -38,7 +38,7 @@ void	rb(t_ps *ps)
 {
 	if (ps->b->size < 2)
 		put_error_and_exit(ERR_OP);
-	stack_shift(ps->b);
+	rotate_top_to_bottom(ps->b);
 	(*ps->operation_count)++;
 }
 
@@ -46,8 +46,8 @@ void	rr(t_ps *ps)
 {
 	if (ps->a->size >= 2 && ps->b->size >= 2)
 	{
-		stack_shift(ps->a);
-		stack_shift(ps->b);
+		rotate_top_to_bottom(ps->a);
+		rotate_top_to_bottom(ps->b);
 		(*ps->operation_count)++;
 	}
 	else
