@@ -28,19 +28,20 @@ void	move_a_to_b(t_ps *ps)
 		ps->b->size++;
 	}
 }
-// void calculate_move_costs(t_ps *ps)
-// {
+void calculate_move_costs(t_ps *ps)
+{
+	
+}
 
-// }
-
-// void	optimize_and_move_b_to_a(t_ps *ps)
-// {
-// 	calculate_move_costs(ps);
-// 	calculate_optimal_target(ps);
-// 	set_best_move_method(ps);
-// 	execute_move_method(ps);
-// 	optimize_stack_a(ps);
-// }
+// optimize 最適化する
+void	optimize_and_move_b_to_a(t_ps *ps)
+{
+	calculate_move_costs(ps);
+	calculate_optimal_target(ps);
+	set_best_move_method(ps);
+	execute_move_method(ps);
+	optimize_stack_a(ps);
+}
 
 void	sort_stack(t_ps *ps)
 {
@@ -57,8 +58,8 @@ void	sort_stack(t_ps *ps)
 	printf("stack b min:%d max:%d\n", ps->min_b, ps->max_b);
 	while (ps->b->size > 0)
 	{
-		//optimize_and_move_b_to_a(ps);
-		//update_min_max_b(ps);
+		optimize_and_move_b_to_a(ps);
+		update_min_max_b(ps);
 		printf("stack b min:%d max:%d\n", ps->min_b, ps->max_b);
 	}
 	//optimize_final_stack_a(ps);
