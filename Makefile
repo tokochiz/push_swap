@@ -13,7 +13,8 @@ SRCFILES = main.c \
 
 OPFILES = sa_sb_ss.c \
 		  pa_pb.c \
-		  ra_rb_rr.c 
+		  ra_rb_rr.c \
+		  rra_rrb_rrr.c
 
 CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR)
 

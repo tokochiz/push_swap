@@ -98,12 +98,13 @@ void				pa(t_ps *ps);
 void				pb(t_ps *ps);
 
 // ra, rb, rr
-void				stack_shift(t_stack *stack);
+void				rotate_top_to_bottom(t_stack *stack);
 void				ra(t_ps *ps);
 void				rb(t_ps *ps);
 void				rr(t_ps *ps);
 
 // rra, rrb, rrr
+void				rotate_bottom_to_top(t_stack *stack);
 void				rra(t_ps *ps);
 void				rrb(t_ps *ps);
 void				rrr(t_ps *ps);
