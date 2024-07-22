@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  ctokoyod < ctokoyod@student.42tokyo.jp    +#+  +:+       +#+        */
+/*   By: ctokoyod <ctokoyod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:49:24 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/07/17 20:39:19 by  ctokoyod        ###   ########.fr       */
+/*   Updated: 2024/07/22 23:03:13 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,17 @@ void	move_a_to_b(t_ps *ps)
 
 	if (ps == NULL || ps->a == NULL || ps->a->top == NULL)
 		put_error_and_exit(ERR_STACK);
-	while (ps->a->top != NULL)
+	while (ps->a->size > 3)
 	{
-		node_to_move = ps->a->top;
-		ps->a->top = node_to_move->next;
-		node_to_move->next = ps->b->top;
-		ps->b->top = node_to_move;
-		ps->a->size--;
-		ps->b->size++;
+		if(ps->a->top->content < find_median(ps->a))	
+			pb(ps);
 	}
+	else{
+		ra(ps);
+	}
+	sort_three(ps->a);
 }
+
 void calculate_move_costs(t_ps *ps)
 {
 	
