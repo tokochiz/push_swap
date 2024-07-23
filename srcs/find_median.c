@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_median.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+
-	+:+     */
-/*   By: ctokoyod <ctokoyod@student.42.fr>          #+#  +:+
-	+#+        */
-/*                                                +#+#+#+#+#+
-	+#+           */
-/*   Created: 2024-07-23 11:48:37 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024-07-23 11:48:37 by ctokoyod         ###   ########.fr       */
+/*   find_median1.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ctokoyod <ctokoyod@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024-07-23 12:59:06 by ctokoyod          #+#    #+#             */
+/*   Updated: 2024-07-23 12:59:06 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-
 void	swap(int *a, int *b)
 {
-	int tmp = *a;
+	int	tmp;
+
+	tmp = *a;
 	*a = *b;
 	*b = tmp;
 }
 
 int	partition(int *array, int left, int right)
 {
-	int pivot;
-	int i;
-	int j;
+	int	pivot;
+	int	i;
+	int	j;
 
 	pivot = array[right]; // 配列の最後の要素をピボットとして選択する
 	i = left - 1;
 	j = left;
-
 	j = left;
 	while (j < right)
 	{
@@ -49,15 +46,13 @@ int	partition(int *array, int left, int right)
 // 配列からｋ番目(中央値)に小さい要素を見つけるアルゴリズム
 int	quick_sort(int *array, int left, int right, int k)
 {
-	int pivot_i;
-	int length;
-	int j;
+	int	pivot_i;
+	int	length;
 
 	while (left <= right)
 	{
 		if (left == right)
 			return (array[left]);
-
 		pivot_i = partition(array, left, right);
 		length = pivot_i - left + 1;
 		if (k == length)
@@ -75,10 +70,10 @@ int	quick_sort(int *array, int left, int right, int k)
 
 int	find_median(t_stack *stack)
 {
-	int i;
-	int median;
-	int *values;
-	t_list *current;
+	int		i;
+	int		median;
+	int		*values;
+	t_list	*current;
 
 	current = stack->top;
 	if (stack == NULL || stack->top == NULL)
@@ -87,11 +82,10 @@ int	find_median(t_stack *stack)
 	values = (int *)malloc(sizeof(int) * stack->size);
 	if (values == NULL)
 		put_error_and_exit(ERR_MALLOC);
-
 	i = 0;
 	while (i < stack->size)
 	{
-		values[i] = current->content;
+		values[i] = *(int *)current->content;
 		current = current->next;
 		i++;
 	}

@@ -69,6 +69,12 @@ void				put_error_and_exit(const char *msg);
 // is_sorted
 bool				is_sorted(t_ps *ps);
 
+// find_median
+void				swap(int *a, int *b);
+int					partition(int *array, int left, int right);
+int					quick_sort(int *array, int left, int right, int k);
+int					find_median(t_stack *stack);
+
 // sort_stack
 void				move_a_to_b(t_ps *ps);
 void				sort_stack(t_ps *ps);

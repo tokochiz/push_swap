@@ -68,28 +68,43 @@ int	main(int argc, char *argv[])
 	/****デバック用****/
 	printf_stack(ps.a, 'A');
 	printf_stack(ps.b, 'B');
-	if (is_sorted(&ps) != TRUE)
-	{
-		sort_stack(&ps);
-		sa(&ps);
-		printf("After sa:\n");
-		printf_stack(ps.a, 'A');
-		printf_stack(ps.b, 'B');
-		pb(&ps);
-		printf("After pb:\n");
-		printf_stack(ps.a, 'A');
-		printf_stack(ps.b, 'B');
-		printf("Operation count: %d\n", *ps.operation_count);
-	}
-	else
-		printf("Already sorted\n");
-	// 操作の出力
-	// print_operations(&stack);
-	// メモリの解放
-	// free_ps(&stack);
-	// メモリの解放
-	free(ps.a->array);
-	free(ps.a);
+    if (is_sorted(&ps) != TRUE)
+    {
+        sort_stack(&ps);
+        printf("After sort_stack:\n");
+        printf_stack(ps.a, 'A');
+        printf_stack(ps.b, 'B');
+
+        if (ps.a->size >= 2)
+        {
+            sa(&ps);
+            printf("After sa:\n");
+            printf_stack(ps.a, 'A');
+            printf_stack(ps.b, 'B');
+        }
+
+        if (ps.a->size >= 1)
+        {
+            pb(&ps);
+            printf("After pb:\n");
+            printf_stack(ps.a, 'A');
+            printf_stack(ps.b, 'B');
+        }
+
+        if (ps.operation_count != NULL)
+            printf("Operation count: %d\n", *ps.operation_count);
+    }
+    else
+    {
+        printf("Already sorted\n");
+    }
+    // 操作の出力
+    // print_operations(&stack);
+    // メモリの解放
+    // free_ps(&stack);
+    // メモリの解放
+    free(ps.a->array);
+    free(ps.a);
 	return (0);
 }
 
