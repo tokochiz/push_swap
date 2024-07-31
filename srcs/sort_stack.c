@@ -22,6 +22,8 @@ void	move_a_to_b(t_ps *ps)
 		put_error_and_exit(ERR_STACK);
 
 	median = find_median(ps->a);
+	    printf("Debug: Allocating memory for values array4 %d\n", median);
+		// ここまで求まるけどその後どこでセグフォしているかを調査する
 	elm_to_move = ps->a->size / 2;
 	moved = 0;
 	while (ps->a->size > 3 && moved < elm_to_move)

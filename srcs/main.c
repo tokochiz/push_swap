@@ -58,6 +58,21 @@ void	check_argc(int argc)
 		put_error_and_exit(ERR_ARGS);
 }
 
+void free_ps(t_ps *ps)
+{
+	if(ps->a == NULL)
+	{
+		ft_lstclear(&(ps->a->top), NULL);
+		free(ps->a);
+	}
+	if(ps->b == NULL)
+	{
+		ft_lstclear(&(ps->b->top), NULL);
+		free(ps->b);
+	}
+	free(ps->operation_count);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_ps	ps;
@@ -70,6 +85,7 @@ int	main(int argc, char *argv[])
 	printf_stack(ps.b, 'B');
     if (is_sorted(&ps) != TRUE)
     {
+		printf("a\n");
         sort_stack(&ps);
         printf("After sort_stack:\n");
         printf_stack(ps.a, 'A');
@@ -103,8 +119,7 @@ int	main(int argc, char *argv[])
     // メモリの解放
     // free_ps(&stack);
     // メモリの解放
-    free(ps.a->array);
-    free(ps.a);
+    free_ps(&ps);
 	return (0);
 }
 
