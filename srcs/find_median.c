@@ -52,8 +52,10 @@ int	quick_sort(int *array, int left, int right, int k)
 
 	while (left <= right)
 	{
+		// 右と左が等しい場合、その要素を返す
 		if (left == right)
 			return (array[left]);
+		//関数を呼び出して、基準値の位置を返す
 		pivot_i = partition(array, left, right);
 		len = pivot_i - left + 1;
 		if (k == len)
@@ -76,14 +78,10 @@ int	find_median(t_stack *stack)
 	int		*values;
 	t_list	*current;
 
-  printf("Debug: Entering find_median\n");
-    printf("Debug: stack = %p, stack->top = %p\n", (void*)stack, (void*)(stack ? stack->top : NULL));
-
 	if (stack == NULL || stack->top == NULL)
 		put_error_and_exit(ERR_MALLOC);
-		  printf("Debug: stack->size = %d\n", stack->size);
-
-    printf("Debug: Allocating memory for values array\n");
+	printf("Debug: stack->size = %d\n", stack->size);
+	printf("Debug: Allocating memory for values array\n");
 	// 　スタックの要素を配列にコピー
 	values = (int *)malloc(sizeof(int) * stack->size);
 	if (values == NULL)
@@ -93,22 +91,27 @@ int	find_median(t_stack *stack)
 	i = 0;
 	while (i < stack->size && current != NULL)
 	{
-		  printf("Debug: Element %d: current = %p, content = %p\n", i, (void*)current, (void*)current->content);
+		printf("Debug: Element %d: current = %p, content = %p\n", i,
+			(void *)current, (void *)current->content);
 		values[i] = (int)(intptr_t)current->content; // 数値として直接扱う
 		current = current->next;
 		i++;
 	}
-	    printf("Debug: Allocating memory for values array1\n");
-	if(i != stack->size)
+	printf("Debug: Allocating memory for values array1\n");
+	if (i != stack->size)
 	{
-		free(values);\
+		free(values);
 		put_error_and_exit(ERR_MALLOC);
 	}
-	    printf("Debug: Allocating memory for values array2\n");
-	median = quick_sort(values, 0, stack->size - 1, stack->size / 2);
+
+	quick_sort(values, 0, stack->size - 1, stack->size / 2);
+	if (stack->size % 2 == 0)
+		median = (values[stack->size / 2 - 1] + values[stack->size / 2]) / 2;
+	else
+	{
+		median = values[stack->size / 2];
+	}
 	free(values);
-	    printf("Debug: Allocating memory for values array3\n");
 	return (median);
 }
-今日2024 7/31 
-中央値の数が正確に求められていない
+

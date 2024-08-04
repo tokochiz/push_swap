@@ -87,9 +87,6 @@ int	main(int argc, char *argv[])
     {
 		printf("a\n");
         sort_stack(&ps);
-        printf("After sort_stack:\n");
-        printf_stack(ps.a, 'A');
-        printf_stack(ps.b, 'B');
 
         if (ps.a->size >= 2)
         {
@@ -124,7 +121,7 @@ int	main(int argc, char *argv[])
 }
 
 /* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
- debag
+ debag 目標は、スタックa内の数を昇順にソートすること。スタックBは最終的に空。貪欲法でソートを用いてソートします。
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
 void	printf_stack(t_stack *stack, char stack_name)
 {
