@@ -29,14 +29,14 @@
 # define TRUE 1
 # define FALSE 0
 
-typedef t_list		t_node;
-/*
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}
-*/
+	int				cost;
+}					t_list;
+
+typedef t_list		t_node;
 
 typedef struct s_stack
 {
@@ -91,6 +91,7 @@ void				set_best_move_method(t_ps *ps);
 void				execute_move_method(t_ps *ps);
 void				optimize_stack_a(t_ps *ps);
 
+// cost
 void				optimize_and_move_b_to_a(t_ps *ps);
 
 // sa, sb, ss

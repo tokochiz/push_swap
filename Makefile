@@ -10,7 +10,8 @@ SRCFILES = main.c \
 			is_sorted.c \
 			sort_stack.c \
 			min_max.c \
-			find_median.c
+			find_median.c \
+			cost.c
 
 OPFILES = sa_sb_ss.c \
 		  pa_pb.c \
