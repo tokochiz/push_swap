@@ -36,10 +36,12 @@ $(LIBFT):
 	$(CC) $(CFLAGS) -c $< -o $@ 
 
 clean:
-	rm -f $(OBJS)
+	del /Q $(subst /,\,$(OBJS))
+# rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	del /Q $(subst /,\,$(NAME))
+# rm -f $(NAME)
 	make -C $(LIBFT_DIR)  fclean
 
 re: fclean all
