@@ -18,7 +18,7 @@ OPFILES = sa_sb_ss.c \
 		  ra_rb_rr.c \
 		  rra_rrb_rrr.c
 
-CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR) -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR)
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRCFILES))
 OP_SRCS = $(addprefix $(OP_DIR)/, $(OPFILES))
@@ -31,6 +31,7 @@ $(NAME): $(OBJS) $(LIBFT)
 
 $(LIBFT): 
 	make -C $(LIBFT_DIR) 
+	ranlib $(LIBFT)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ 

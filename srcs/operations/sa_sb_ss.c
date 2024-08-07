@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   sa_sb_ss.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  ctokoyod < ctokoyod@student.42tokyo.jp    +#+  +:+       +#+        */
+/*   By: ctokoyod <ctokoyod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:52:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/07/18 21:17:01 by  ctokoyod        ###   ########.fr       */
+/*   Updated: 2024/08/06 23:34:27 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	stack_swap(t_list **top)
+void	stack_swap(t_node **top)
 {
-	t_list		*first;
-	t_list		*second;
+	t_node		*first;
+	t_node		*second;
 	intptr_t	tmp;
 
 	if (*top == NULL || (*top)->next == NULL)

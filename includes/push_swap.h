@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  ctokoyod < ctokoyod@student.42tokyo.jp    +#+  +:+       +#+        */
+/*   By: ctokoyod <ctokoyod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:05:12 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/07/18 21:17:29 by  ctokoyod        ###   ########.fr       */
+/*   Updated: 2024/08/06 23:43:43 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@
 # define TRUE 1
 # define FALSE 0
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-	int				cost;
-}					t_list;
+
+// typedef struct s_node
+// {
+// 	int				cost;
+// }t_node;
 
 typedef t_list		t_node;
+
 
 typedef struct s_stack
 {
@@ -92,10 +92,13 @@ void				execute_move_method(t_ps *ps);
 void				optimize_stack_a(t_ps *ps);
 
 // cost
-void				optimize_and_move_b_to_a(t_ps *ps);
-
+int 	find_max_position(t_stack *stack);
+int		find_target_position(t_stack *stack, int value);
+void	calculate_move_costs(t_ps *ps);
+t_node	*find_best_element(t_stack *stack);
+void	optimize_and_move_b_to_a(t_ps *ps);
 // sa, sb, ss
-void				stack_swap(t_list **top);
+void	stack_swap(t_node **top);
 void				sa(t_ps *ps);
 void				sb(t_ps *ps);
 void				ss(t_ps *ps);

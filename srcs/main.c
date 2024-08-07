@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  ctokoyod < ctokoyod@student.42tokyo.jp    +#+  +:+       +#+        */
+/*   By: ctokoyod <ctokoyod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:03:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/07/18 21:08:51 by  ctokoyod        ###   ########.fr       */
+/*   Updated: 2024/08/06 23:09:01 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	printf_stack(t_stack *stack, char stack_name)
 	printf("Stack %c (size: %d): ", stack_name, stack->size);
 	while (current != NULL)
 	{
-		printf("%ld ", (intptr_t)current->content);
+		printf("%lld ", (intptr_t)current->content);
 		current = current->next;
 	}
 	printf("\n");
