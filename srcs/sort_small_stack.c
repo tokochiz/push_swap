@@ -28,22 +28,22 @@ void	sort_three(t_ps *ps)
 	a = (int)(intptr_t)ps->a->top->content;
 	b = (int)(intptr_t)ps->a->top->next->content;
 	c = (int)(intptr_t)ps->a->top->next->next->content;
-	if (a > b && b > c)
+	if (a > b && b > c) // 例3, 2, 1
 	{
 		sa(ps);
 		rra(ps);
 	}
-	else if (a > b && b < c && c < a)
-		ra(ps); // ra: スタックAを上に1つシフト（一番上が一番下に）
-	else if (a < b && b > c && c < a)
-		rra(ps);
-	else if (a < b && b > c && c < a)
+	else if (a > b && a < c) // 2, 1, 3
+		sa(ps);
+	else if (a > b && b < c && a > c) // 3, 1, 2
+		ra(ps);
+	else if (a < b && b > c && a < c) // 1, 3, 2
 	{
 		sa(ps);
 		ra(ps);
 	}
-	else if (a < c && b < c && c < a)
-		sa(ps);
+	else if (a < b && b > c && a > c) // 2, 3, 1
+		rra(ps);
 }
 
 void	sort_four(t_ps *ps)
@@ -94,7 +94,7 @@ void	sort_five(t_ps *ps)
 void	sort_small_stack(t_ps *ps)
 {
 	int	a_size;
-
+    printf("small\n");
 	a_size = ps->a->size;
 	if (a_size == 2)
 		sort_two(ps);
