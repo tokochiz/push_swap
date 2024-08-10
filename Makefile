@@ -9,9 +9,11 @@ SRCFILES = main.c \
 			error.c \
 			is_sorted.c \
 			sort_stack.c \
-			min_max.c \
+			sort_small_stack.c \
 			find_median.c \
-			cost.c
+			find_min_max.c \
+			cost.c \
+			move.c
 
 OPFILES = sa_sb_ss.c \
 		  pa_pb.c \
@@ -37,12 +39,12 @@ $(LIBFT):
 	$(CC) $(CFLAGS) -c $< -o $@ 
 
 clean:
-	del /Q $(subst /,\,$(OBJS))
-# rm -f $(OBJS)
+#	del /Q $(subst /,\,$(OBJS))
+	rm -f $(OBJS)
 
 fclean: clean
-	del /Q $(subst /,\,$(NAME))
-# rm -f $(NAME)
+#	del /Q $(subst /,\,$(NAME))
+	rm -f $(NAME)
 	make -C $(LIBFT_DIR)  fclean
 
 re: fclean all

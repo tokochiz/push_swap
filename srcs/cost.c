@@ -21,62 +21,36 @@ value が現在の要素より小さく、かつ次の要素よりも大きい�
 
 */
 
-int find_max_position(t_stack *stack)
-{
-	t_node *current;
-	int max_value;
-	int max_pos;
-	int current_pos;
-
-	if(stack ==NULL || stack->top == NULL)
-		put_error_and_exit(ERR_STACK);
-		
-	current = stack->top;
-	max_value = (int)(intptr_t)current->content;
-	max_pos = 0;
-	current_pos = 0;
-	
-	while(current != NULL)
-	{
-		if((int)(intptr_t)current->content > max_value)
-		{
-			max_value = (int)(intptr_t)current->content;
-			max_pos = current_pos;
-		}
-		current = current->next;
-		current_pos++;
-	}
-	return (max_pos + 1) % stack->size; // stack内で最大の次の位置を返す
-	//max_pos 最大が見つかった位置　+１
-	// もしmax_posが最大の要素だった場合に、stak->size-1　単純に＋１するとスタックサイズを超えてしまう、モジュロ演算を使うことで回避
-}
 
 int	find_target_position(t_stack *stack, int value)
 {
 	t_node	*current;
-    int pos;
-	int min;
-	int max;
-	
+	int		pos;
+	int		min;
+	int		max;
+
 	if (stack == NULL || stack->top == NULL)
 		put_error_and_exit(ERR_STACK);
 	current = stack->top;
-    pos = 0;
-    min = find_min(stack);
+	pos = 0;
+	min = find_min(stack);
 	max = find_max(stack);
 	// 値がスタックの最小値より小さいとき、最小値の直前（最大値の後）に挿入
-	if(value < min)
-		return  find_max_position(stack);
-	if(value > max)
-		return  0; //スタックの先頭に村有
+	if (value < min){
+ // 最大値の次の位置（つまり先頭）に挿入する
+        return (find_max_position(stack) + 1) % stack->size;
+ 	}
+	if (value > max)
+		return (0); //スタックの先頭にある
 	while (current->next != NULL)
 	{
-		if (value > (int)(intptr_t)current->content && value < (int)(intptr_t)current->next)
-			return pos+1;
+		if (value > (int)(intptr_t)current->content
+			&& value < (int)(intptr_t)current->next)
+			return (pos + 1);
 		current = current->next;
 		pos++;
 	}
-	return 0;
+	return (pos + 1); // 最後の位置を返す
 }
 
 void	calculate_move_costs(t_ps *ps)
@@ -121,24 +95,16 @@ t_node	*find_best_element(t_stack *stack)
 	cost_min = current;
 	while (current != NULL)
 	{
-		if (current->cost < cost_min->cost)
+		printf("current: %d  cost: %d\n", (int)(intptr_t)current->content,
+			(int)(intptr_t)current->cost);
+		if (cost_min == NULL || current->cost < cost_min->cost)
 			cost_min = current;
 		current = current->next;
 	}
+	if (cost_min == NULL)
+		put_error_and_exit(ERR_STACK);
+	printf("Best element: %d with cost: %d\n", (int)(intptr_t)cost_min->content,
+		cost_min->cost);
 	return (cost_min);
 }
 
-void	optimize_and_move_b_to_a(t_ps *ps)
-{
-	t_node	*best_element;
-
-	calculate_move_costs(ps);
-	//最小コストの要素を見つける
-	best_element = find_best_element(ps->b);
-	printf("best_element %lld\n", (intptr_t)best_element);
-	//その要素をB内の先頭に移動
-	//move_to_top(ps, 'b', best_element);
-	// A内の適切な位置に移動
-	//move_to_target(ps, 'a', (int)(intptr_t)best_element->content);
-	pa(ps);
-}

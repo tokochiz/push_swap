@@ -85,25 +85,7 @@ int	main(int argc, char *argv[])
 	printf_stack(ps.b, 'B');
     if (is_sorted(&ps) != TRUE)
     {
-		printf("a\n");
         sort_stack(&ps);
-
-        if (ps.a->size >= 2)
-        {
-            sa(&ps);
-            printf("After sa:\n");
-            printf_stack(ps.a, 'A');
-            printf_stack(ps.b, 'B');
-        }
-
-        if (ps.a->size >= 1)
-        {
-            pb(&ps);
-            printf("After pb:\n");
-            printf_stack(ps.a, 'A');
-            printf_stack(ps.b, 'B');
-        }
-
         if (ps.operation_count != NULL)
             printf("Operation count: %d\n", *ps.operation_count);
     }
@@ -136,7 +118,7 @@ void	printf_stack(t_stack *stack, char stack_name)
 	printf("Stack %c (size: %d): ", stack_name, stack->size);
 	while (current != NULL)
 	{
-		printf("%lld ", (intptr_t)current->content);
+		printf("%ld ", (intptr_t)current->content);
 		current = current->next;
 	}
 	printf("\n");

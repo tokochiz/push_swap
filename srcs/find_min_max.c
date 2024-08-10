@@ -35,7 +35,8 @@ int	find_min_position(t_stack *stack)
 		current = current->next;
 		current_pos++;
 	}
-	return ((min_pos + 1) % stack->size);
+	// return ((min_pos + 1) % stack->size);
+	return min_pos;
 }
 
 int	find_max_position(t_stack *stack)
@@ -61,9 +62,7 @@ int	find_max_position(t_stack *stack)
 		current = current->next;
 		current_pos++;
 	}
-	return ((max_pos + 1) % stack->size); // stack内で最大の次の位置を返す
-											// max_pos 最大が見つかった位置　+１
-											// もしmax_posが最大の要素だった場合に、stak->size-1　単純に＋１するとスタックサイズを超えてしまう、モジュロ演算を使うことで回避
+	return max_pos;
 }
 
 int	find_min(t_stack *stack)

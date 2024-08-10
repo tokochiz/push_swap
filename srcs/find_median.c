@@ -80,24 +80,20 @@ int	find_median(t_stack *stack)
 
 	if (stack == NULL || stack->top == NULL)
 		put_error_and_exit(ERR_MALLOC);
-	printf("Debug: stack->size = %d\n", stack->size);
-	printf("Debug: Allocating memory for values array\n");
+
 	// 　スタックの要素を配列にコピー
 	values = (int *)malloc(sizeof(int) * stack->size);
 	if (values == NULL)
 		put_error_and_exit(ERR_MALLOC);
-	printf("Debug: Copying stack elements to array\n");
+
 	current = stack->top;
 	i = 0;
 	while (i < stack->size && current != NULL)
 	{
-		printf("Debug: Element %d: current = %p, content = %p\n", i,
-			(void *)current, (void *)current->content);
 		values[i] = (int)(intptr_t)current->content; // 数値として直接扱う
 		current = current->next;
 		i++;
 	}
-	printf("Debug: Allocating memory for values array1\n");
 	if (i != stack->size)
 	{
 		free(values);
