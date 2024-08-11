@@ -24,8 +24,10 @@ void	pa(t_ps *ps)
 	first->next = ps->a->top;
 	ps->a->top = first;
 	ps->a->size++;
+	ft_printf("pa\n");
 	(*ps->operation_count)++;
 }
+
 void	pb(t_ps *ps)
 {
 	t_node	*first;
@@ -38,5 +40,6 @@ void	pb(t_ps *ps)
 	first->next = ps->b->top;
 	ps->b->top = first;
 	ps->b->size++;
+	ft_printf("pb\n");
 	(*ps->operation_count)++;
 }

@@ -32,6 +32,7 @@ void	sa(t_ps *ps)
 	if (ps->a->size < 2)
 		put_error_and_exit(ERR_OP);
 	stack_swap(&ps->a->top);
+	ft_printf("sa\n");
 	(*ps->operation_count)++;
 }
 
@@ -40,6 +41,7 @@ void	sb(t_ps *ps)
 	if (ps->b->size < 2)
 		put_error_and_exit(ERR_OP);
 	stack_swap(&ps->b->top);
+	ft_printf("sb\n");
 	(*ps->operation_count)++;
 }
 
@@ -49,6 +51,7 @@ void	ss(t_ps *ps)
 	{
 		stack_swap(&ps->a->top);
 		stack_swap(&ps->b->top);
+		ft_printf("ss\n");
 		(*ps->operation_count)++;
 	}
 	else

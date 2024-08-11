@@ -17,7 +17,7 @@ void	rotate_top_to_bottom(t_stack *stack)
 	t_list	*first;
 	t_list	*last;
 
-	if (stack->size < 2  || stack->top == NULL || (stack->top->next == NULL))
+	if (stack->size < 2 || stack->top == NULL || (stack->top->next == NULL))
 		put_error_and_exit(ERR_OP);
 	first = stack->top;
 	last = ft_lstlast(first);
@@ -31,6 +31,7 @@ void	ra(t_ps *ps)
 	if (ps->a->size < 2)
 		put_error_and_exit(ERR_OP);
 	rotate_top_to_bottom(ps->a);
+	ft_printf("ra\n");
 	(*ps->operation_count)++;
 }
 
@@ -39,6 +40,7 @@ void	rb(t_ps *ps)
 	if (ps->b->size < 2)
 		put_error_and_exit(ERR_OP);
 	rotate_top_to_bottom(ps->b);
+	ft_printf("rb\n");
 	(*ps->operation_count)++;
 }
 
@@ -48,6 +50,7 @@ void	rr(t_ps *ps)
 	{
 		rotate_top_to_bottom(ps->a);
 		rotate_top_to_bottom(ps->b);
+		ft_printf("rra\n");
 		(*ps->operation_count)++;
 	}
 	else
