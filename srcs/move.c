@@ -12,6 +12,30 @@
 
 #include "../includes/push_swap.h"
 
+void	reverse_operations(t_ps *ps, int ra_count, int rra_count)
+{
+	int	ra_op;
+	int	rra_op;
+
+	ra_op = 0;
+	rra_op = 0;
+	if (rra_count != 0)
+		ra_op = rra_count + 1;
+	if (ra_count != 0)
+		rra_op = ra_count;
+	printf("ra: %d rra %d %d %d\n", ra_count, rra_count, ra_op, rra_op);
+	while (ra_op > 0)
+	{
+		ra(ps);
+		ra_op--;
+	}
+	while (rra_op > 0)
+	{
+		rra(ps);
+		rra_op--;
+	}
+}
+
 int	find_insertion_position(t_stack *stack, int value)
 {
 	t_node	*current;
@@ -33,6 +57,48 @@ int	find_insertion_position(t_stack *stack, int value)
 	}
 	return (pos + 1);
 }
+void	move_to_a_target(t_ps *ps, int value)
+{
+	int	target_p;
+	int	a_size;
+	int	ra_count;
+	int	rra_count;
+
+	ra_count = 0;
+	rra_count = 0;
+	target_p = find_insertion_position(ps->a, value);
+	printf("Calculated target position: %d\n", target_p);
+	a_size = ps->a->size;
+	if (target_p <= a_size / 2) // スタックの半分より上にあるか下にあるかで回転方向を決定
+	{
+		while (target_p > 0)
+		{
+			ra(ps); // ra: スタックAを上に1つシフト（一番上が一番下に）
+			ra_count++;
+			target_p--;
+		}
+	}
+	else
+	{
+		while (target_p < a_size)
+		{
+			rra(ps); // rra: スタックAを下に1つシフト（一番下が一番上に）
+			rra_count++;
+			target_p++;
+		}
+	}
+	printf("~~a_target~~~~~~~~~~~~~\n");
+	printf_stack(ps->a, 'A');
+	printf_stack(ps->b, 'B');
+	pa(ps);
+	printf("~~ps~~~~~~~~~~~~~\n");
+	printf_stack(ps->a, 'A');
+	printf_stack(ps->b, 'B');
+	reverse_operations(ps, ra_count, rra_count);
+	printf("~~reverse~~~~~~~~~~~~~\n");
+	printf_stack(ps->a, 'A');
+	printf_stack(ps->b, 'B');
+}
 
 //その要素をB内の先頭に移動
 void	move_to_b_top(t_ps *ps, t_node *target)
@@ -40,7 +106,6 @@ void	move_to_b_top(t_ps *ps, t_node *target)
 	int		pos;
 	t_node	*current;
 
-	printf("m: target_element %d\n", (int)(intptr_t)target->content);
 	pos = 0;
 	current = ps->b->top;
 	while (current != target && current != NULL)
@@ -52,8 +117,7 @@ void	move_to_b_top(t_ps *ps, t_node *target)
 		return ;
 	if (pos <= ps->b->size / 2)
 	{
-		// 上半分にあるとき、rb: スタックBを上に1つシフト（一番上が一番下に）
-		while (pos > 0)
+		while (pos > 0) // 上半分にあるとき、rb: スタックBを上に1つシフト（一番上が一番下に）
 		{
 			rb(ps);
 			pos--;
@@ -73,52 +137,20 @@ void	move_to_b_top(t_ps *ps, t_node *target)
 }
 
 // A内の適切な位置に移動
-void	move_to_a_target(t_ps *ps, int value)
-{
-	int	target_pos;
-	int	a_size;
-
-	printf("m: value %d\n", value);
-	target_pos = find_insertion_position(ps->a, value);
-	printf("Calculated target position: %d\n", target_pos);
-	a_size = ps->a->size;
-	// スタックの半分より上にあるか下にあるかで回転方向を決定
-	if (target_pos <= a_size / 2)
-	{
-		while (target_pos > 0)
-		{
-			ra(ps); // ra: スタックAを上に1つシフト（一番上が一番下に）
-			target_pos--;
-		}
-	}
-	else
-	{
-		while (target_pos < a_size)
-		{
-			rra(ps); // rra: スタックAを下に1つシフト（一番下が一番上に）
-			target_pos++;
-		}
-	}
-	printf("~~a_target~~~~~~~~~~~~~\n");
-	printf_stack(ps->a, 'A');
-	printf_stack(ps->b, 'B');
-}
 
 void	optimize_and_move_b_to_a(t_ps *ps)
 {
-	t_node	*best_element;
+	t_node	*inserted_p;
+	int		inserted_value;
 
 	calculate_move_costs(ps);
-	//最小コストの要素を見つける
-	best_element = find_best_element(ps->b);
-	printf("m: best_element %d\n", (int)(intptr_t)best_element->content);
-	//その要素をB内の先頭に移動
-	move_to_b_top(ps, best_element);
 
+	inserted_p = find_best_element(ps->b);
+	inserted_value = (int)(intptr_t)inserted_p->content;
+	printf("m: best_element %d\n", (int)(intptr_t)inserted_p->content);
+
+	move_to_b_top(ps, inserted_p);
 	// A内の適切な位置に移動
-	move_to_a_target(ps, (int)(intptr_t)best_element->content);
-    pa(ps); // pa: スタックBの一番上の要素をスタックAに移動
-	printf("~~ps~~~~~~~~~~~~~\n");
-	printf_stack(ps->a, 'A');
-	printf_stack(ps->b, 'B');
+	move_to_a_target(ps, (int)(intptr_t)inserted_p->content);
+
 }
