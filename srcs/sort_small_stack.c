@@ -28,21 +28,21 @@ void	sort_three(t_ps *ps)
 	a = (int)(intptr_t)ps->a->top->content;
 	b = (int)(intptr_t)ps->a->top->next->content;
 	c = (int)(intptr_t)ps->a->top->next->next->content;
-	if (a > b && b > c) // 例3, 2, 1
+	if (a > b && b > c)
 	{
 		sa(ps);
 		rra(ps);
 	}
-	else if (a > b && a < c) // 2, 1, 3
+	else if (a > b && a < c)
 		sa(ps);
-	else if (a > b && b < c && a > c) // 3, 1, 2
+	else if (a > b && b < c && a > c)
 		ra(ps);
-	else if (a < b && b > c && a < c) // 1, 3, 2
+	else if (a < b && b > c && a < c)
 	{
 		sa(ps);
 		ra(ps);
 	}
-	else if (a < b && b > c && a > c) // 2, 3, 1
+	else if (a < b && b > c && a > c)
 		rra(ps);
 }
 
@@ -51,7 +51,6 @@ void	sort_four(t_ps *ps)
 	int	min_pos;
 
 	min_pos = find_min_position(ps->a);
-	// 最小値を一番上に持ってくる
 	if (min_pos == 1)
 		sa(ps);
 	else if (min_pos == 2)
@@ -71,7 +70,6 @@ void	sort_five(t_ps *ps)
 	int	min_pos;
 
 	min_pos = find_min_position(ps->a);
-	// 最小値を一番上に持ってくる
 	if (min_pos == 1)
 		sa(ps);
 	else if (min_pos == 2)
@@ -87,14 +85,14 @@ void	sort_five(t_ps *ps)
 	else if (min_pos == 4)
 		rra(ps);
 	pb(ps);
-	sort_three(ps);
+	sort_four(ps);
 	pa(ps);
 }
 
 void	sort_small_stack(t_ps *ps)
 {
 	int	a_size;
-    printf("small\n");
+
 	a_size = ps->a->size;
 	if (a_size == 2)
 		sort_two(ps);
