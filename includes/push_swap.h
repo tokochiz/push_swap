@@ -104,6 +104,7 @@ void			calculate_move_costs(t_ps *ps);
 t_node			*find_best_element(t_stack *stack);
 
 // move
+void			reverse_operations(t_ps *ps, int ra_count, int rra_count);
 int				find_insertion_position(t_stack *stack, int value);
 void			move_to_b_top(t_ps *ps, t_node *target);
 void			move_to_a_target(t_ps *ps, int value);
