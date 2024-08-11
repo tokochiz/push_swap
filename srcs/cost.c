@@ -14,13 +14,11 @@
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~途中なので修正する
 /*
-挿入位置は以下のルールで決定します：
+挿入位置は以下のルールで決定：
 
 value が現在の要素より大きく、かつスタックの先頭要素よりも小さい場合
 value が現在の要素より小さく、かつ次の要素よりも大きい場合
-
 */
-
 
 int	find_target_position(t_stack *stack, int value)
 {
@@ -95,16 +93,14 @@ t_node	*find_best_element(t_stack *stack)
 	cost_min = current;
 	while (current != NULL)
 	{
-		printf("current: %d  cost: %d\n", (int)(intptr_t)current->content,
-			(int)(intptr_t)current->cost);
 		if (cost_min == NULL || current->cost < cost_min->cost)
 			cost_min = current;
 		current = current->next;
 	}
 	if (cost_min == NULL)
 		put_error_and_exit(ERR_STACK);
-	printf("Best element: %d with cost: %d\n", (int)(intptr_t)cost_min->content,
-		cost_min->cost);
+	// printf("Best element: %d with cost: %d\n", (int)(intptr_t)cost_min->content,
+	// 	cost_min->cost);
 	return (cost_min);
 }
 

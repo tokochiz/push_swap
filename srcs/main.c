@@ -27,7 +27,9 @@ void	parse_args(int argc, char *argv[], t_ps *ps)
 			put_error_and_exit(ERR_LST1);
 		new_node = ft_lstnew((void *)(intptr_t)value);
 		if (new_node == NULL)
+		{
 			put_error_and_exit(ERR_LST2);
+		}
 		ft_lstadd_back(&(ps->a->top), new_node);
 		i++;
 	}
@@ -82,23 +84,29 @@ int	main(int argc, char *argv[])
 	if (is_sorted(&ps) != TRUE)
 	{
 		sort_stack(&ps);
-		if (ps.operation_count != NULL)
-			printf("Operation count: %d\n", *ps.operation_count);
 	}
 	else
 	{
 		printf("Already sorted\n");
 	}
-	printf("~~~~~~sotr~~~~\n");
+	if (ps.operation_count != NULL)
+		printf("Operation count: %d\n", *ps.operation_count);
+	printf("~~~~~~sort~1111~~~\n");
 	printf_stack(ps.a, 'A');
 	printf_stack(ps.b, 'B');
 	free_ps(&ps);
 	return (0);
 }
 
+// __attribute__((destructor))
+// static void destructor() {
+//     system("leaks -q push_swap");
+// }
+
 /* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
  debag 目標は、スタックa内の数を昇順にソートすること。スタックBは最終的に空。貪欲法でソートを用いてソートします。
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
+
 void	printf_stack(t_stack *stack, char stack_name)
 {
 	t_node	*current;
