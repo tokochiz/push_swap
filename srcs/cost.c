@@ -60,7 +60,7 @@ void	calculate_move_costs(t_ps *ps)
 	int		b_size;
 	int		cost_b;
 	int		cost_a;
-	int		target_pos;
+	int		target_p;
 
 	current = ps->b->top;
 	position = 0;
@@ -71,13 +71,13 @@ void	calculate_move_costs(t_ps *ps)
 			cost_b = position;
 		else
 			cost_b = b_size - position;
-		target_pos = find_target_position(ps->a,
+		target_p = find_target_position(ps->a,
 				(int)(intptr_t)current->content);
 		//適切な挿入位置を見つけ
-		if (target_pos <= ps->a->size / 2)
-			cost_a = target_pos;
+		if (target_p <= ps->a->size / 2)
+			cost_a = target_p;
 		else
-			cost_a = ps->a->size - target_pos;
+			cost_a = ps->a->size - target_p;
 		current->cost = cost_a + cost_b;
 		current = current->next;
 		position++;
