@@ -1,7 +1,8 @@
 NAME = push_swap
 CC = cc
-LIBFT = $(LIBFT_DIR)libft.a
+LIBFT = $(LIBFT_DIR)libft
 LIBFT_DIR = ./Libft/
+
 INC_DIR = includes
 OP_DIR = ./$(SRC_DIR)/operations
 SRC_DIR = srcs
@@ -20,7 +21,7 @@ OPFILES = sa_sb_ss.c \
 		  ra_rb_rr.c \
 		  rra_rrb_rrr.c
 
-CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR)
+CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR) -I $(LIBFT_DIR)/include
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRCFILES))
 OP_SRCS = $(addprefix $(OP_DIR)/, $(OPFILES))
