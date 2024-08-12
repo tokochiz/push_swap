@@ -17,21 +17,25 @@ void	reverse_operations(t_ps *ps, int ra_count, int rra_count)
 	int	ra_op;
 	int	rra_op;
 
+	printf("ra %d rra %d\n", ra_count, rra_count);
 	ra_op = 0;
 	rra_op = 0;
-	if (rra_count != 0)
+	if (rra_count >= 0 && ra_count == 0)
 		ra_op = rra_count + 1;
-	if (ra_count != 0)
+	if (rra_count == 0 && ra_count > 0)
 		rra_op = ra_count;
-	while (ra_op > 0)
+	if (is_sorted(ps) != TRUE)
 	{
-		ra(ps);
-		ra_op--;
-	}
-	while (rra_op > 0)
-	{
-		rra(ps);
-		rra_op--;
+		while (ra_op > 0)
+		{
+			ra(ps);
+			ra_op--;
+		}
+		while (rra_op > 0)
+		{
+			rra(ps);
+			rra_op--;
+		}
 	}
 }
 
@@ -67,6 +71,7 @@ void	move_to_a_target(t_ps *ps, int value)
 	rra_count = 0;
 	target_p = find_insertion_position(ps->a, value);
 	a_size = ps->a->size;
+	printf("target_p %d size %d\n", target_p, a_size / 2);
 	if (target_p <= a_size / 2) // スタックの半分より上にあるか下にあるかで回転方向を決定
 	{
 		while (target_p > 0)
@@ -85,17 +90,17 @@ void	move_to_a_target(t_ps *ps, int value)
 			target_p++;
 		}
 	}
-	// printf("~~a_target~~~~~~~~~~~~~\n");
-	// printf_stack(ps->a, 'A');
-	// printf_stack(ps->b, 'B');
+	printf("~~a_target~~~~~~~~~~~~~\n");
+	printf_stack(ps->a, 'A');
+	printf_stack(ps->b, 'B');
 	pa(ps);
-	// printf("~~ps~~~~~~~~~~~~~\n");
-	// printf_stack(ps->a, 'A');
-	// printf_stack(ps->b, 'B');
+	printf("~~ps~~~~~~~~~~~~~\n");
+	printf_stack(ps->a, 'A');
+	printf_stack(ps->b, 'B');
 	reverse_operations(ps, ra_count, rra_count);
-	// printf("~~reverse~~~~~~~~~~~~~\n");
-	// printf_stack(ps->a, 'A');
-	// printf_stack(ps->b, 'B');
+	printf("~~reverse~~~~~~~~~~~~~\n");
+	printf_stack(ps->a, 'A');
+	printf_stack(ps->b, 'B');
 }
 
 //その要素をB内の先頭に移動
@@ -138,25 +143,22 @@ void	optimize_and_move_b_to_a(t_ps *ps)
 	t_node	*inserted_p;
 	int		inserted_value;
 
-    if (ps->b->size == 0) {
-        return;  // Bスタックが空の場合、何もしない
-    }
+	if (ps->b->size == 0)
+	{
+		return ; // Bスタックが空の場合、何もしない
+	}
 	calculate_move_costs(ps);
-
 	inserted_p = find_best_element(ps->b);
 	inserted_value = (int)(intptr_t)inserted_p->content;
 	// printf("m: best_element %d\n", (int)(intptr_t)inserted_p->content);
-
-//int b_size_before = ps->b->size;
-    move_to_b_top(ps, inserted_p);
-    //printf("After move_to_b_top: B size: %d\n", ps->b->size);
-
-	//int a_size_before = ps->a->size;
+	// int b_size_before = ps->b->size;
+	move_to_b_top(ps, inserted_p);
+	// printf("After move_to_b_top: B size: %d\n", ps->b->size);
+	// int a_size_before = ps->a->size;
 	move_to_a_target(ps, (int)(intptr_t)inserted_p->content);
-	   // printf("After move_to_a_target: A size: %d\n", ps->a->size);
-
-    // if (ps->b->size == b_size_before && ps->a->size == a_size_before) {
-    //     printf("Error: Stacks did not change size\n");
-    //     exit(1);
-    // }
+	// printf("After move_to_a_target: A size: %d\n", ps->a->size);
+	// if (ps->b->size == b_size_before && ps->a->size == a_size_before) {
+	//     printf("Error: Stacks did not change size\n");
+	//     exit(1);
+	// }
 }
