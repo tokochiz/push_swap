@@ -12,43 +12,70 @@
 
 #include "../includes/push_swap.h"
 
-// 中央値を求める理由　動作ごとに回数を加算できているか　一旦、単純にA→Bの関数として使う
+void	move_group(t_ps *ps, int min, int max)
+{
+	int	value;
+	int	i;
+
+	i = 0;
+	while (i < ps->a->size)
+	{
+		value = (int)(intptr_t)ps->a->top->content;
+		if (value > min && value <= max)
+		{
+			pb(ps);
+			if (ps->b->size > 1
+				&& value < (int)(intptr_t)ps->b->top->next->content)
+				sb(ps);
+		}
+		else
+		{
+			ra(ps);
+		}
+		i++;
+	}
+}
+
 void	move_a_to_b(t_ps *ps)
 {
-	int	median;
-	int	moved;
-	int	rotated;
-	int	elements_to_move;
+	int	min;
+	int	max;
+	int	range;
 
 	if (ps == NULL || ps->a == NULL || ps->a->top == NULL)
 		put_error_and_exit(ERR_STACK);
 	while (ps->a->size > 5)
 	{
-		median = find_median(ps->a);
-		printf("median %d\n", median);
-		elements_to_move = ps->a->size / 2;
-		moved = 0;
-		rotated = 0;
-		while (moved + rotated < ps->a->size && moved < elements_to_move)
-		{
-			if ((int)(intptr_t)ps->a->top->content < median
-				&& moved < elements_to_move)
-			{
-				pb(ps);
-				moved++;
-			}
-			else
-			{
-				ra(ps);
-				rotated++;
-			}
-		}
-		while (ps->a->size > 5)
-			pb(ps);
+		min = find_min(ps->a);
+		max = find_max(ps->a);
+		range = max - min;
+		ps->group1 = min + range / 4;
+		ps->group2 = min + 2 * range / 4;
+		ps->group3 = min + 3 * range / 4;
+		move_group(ps, ps->group3, max + 1);
+		move_group(ps, ps->group2, ps->group3);
+		move_group(ps, ps->group1, ps->group2);
+		move_group(ps, min - 1, ps->group1);
 	}
 	sort_small_stack(ps);
 	printf_stack(ps->a, 'A');
 	printf_stack(ps->b, 'B');
+}
+
+void	optimize_and_move_b_to_a(t_ps *ps)
+{
+	t_node	*inserted_p;
+	int		inserted_value;
+
+	if (ps->b->size == 0)
+	{
+		return ; // Bスタックが空の場合、何もしない
+	}
+	calculate_move_costs(ps);
+	inserted_p = find_best_element(ps->b);
+	inserted_value = (int)(intptr_t)inserted_p->content;
+	move_to_b_top(ps, inserted_p);
+	move_to_a_target(ps, (int)(intptr_t)inserted_p->content);
 }
 
 void	sort_stack(t_ps *ps)

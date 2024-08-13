@@ -49,6 +49,10 @@ typedef struct s_ps
 	t_stack		*b;
 	char		**operation;
 	int			*operation_count;
+	int			group1;
+	int			group2;
+	int			group3;
+	int			group4;
 	int			min_b;
 	int			max_b;
 }				t_ps;
@@ -81,8 +85,6 @@ void			sort_five(t_ps *ps);
 void			sort_small_stack(t_ps *ps);
 
 // sort_stack
-void			move_a_to_b(t_ps *ps);
-void			sort_stack(t_ps *ps);
 
 // min_max
 int				find_min_position(t_stack *stack);
@@ -92,11 +94,10 @@ int				find_max(t_stack *stakc);
 void			update_min_max_b(t_ps *ps);
 
 // sort_stack
-void			calculate_move_costs(t_ps *ps);
-void			calculate_optimal_target(t_ps *ps);
-void			set_best_move_method(t_ps *ps);
-void			execute_move_method(t_ps *ps);
-void			optimize_stack_a(t_ps *ps);
+void			move_group(t_ps *ps, int min, int max);
+void			move_a_to_b(t_ps *ps);
+void			optimize_and_move_b_to_a(t_ps *ps);
+void			sort_stack(t_ps *ps);
 
 // cost
 int				find_target_position(t_stack *stack, int value);
@@ -108,7 +109,6 @@ void			reverse_operations(t_ps *ps, int ra_count, int rra_count);
 int				find_insertion_position(t_stack *stack, int value);
 void			move_to_b_top(t_ps *ps, t_node *target);
 void			move_to_a_target(t_ps *ps, int value);
-void			optimize_and_move_b_to_a(t_ps *ps);
 
 // sa, sb, ss
 void			stack_swap(t_node **top);
