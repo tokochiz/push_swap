@@ -35,8 +35,7 @@ int	find_min_position(t_stack *stack)
 		current = current->next;
 		current_pos++;
 	}
-	// return ((min_pos + 1) % stack->size);
-	return min_pos;
+	return (min_pos);
 }
 
 int	find_max_position(t_stack *stack)
@@ -62,7 +61,7 @@ int	find_max_position(t_stack *stack)
 		current = current->next;
 		current_pos++;
 	}
-	return max_pos;
+	return (max_pos);
 }
 
 int	find_min(t_stack *stack)

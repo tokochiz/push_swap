@@ -84,14 +84,16 @@ int	main(int argc, char *argv[])
 	if (is_sorted(&ps) != TRUE)
 	{
 		sort_stack(&ps);
+		if(is_sorted(&ps) == TRUE)
+			ft_printf("OK\n");
 	}
 	else
 	{
-		printf("Already sorted\n");
+		printf("Error\n");
 	}
 	if (ps.operation_count != NULL)
 		printf("Operation count: %d\n", *ps.operation_count);
-	printf("~~~~~~sort~1111~~~\n");
+	printf("~~~~~~sort~~~~~~~\n");
 	printf_stack(ps.a, 'A');
 	printf_stack(ps.b, 'B');
 	free_ps(&ps);

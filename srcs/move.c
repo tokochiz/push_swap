@@ -90,17 +90,17 @@ void	move_to_a_target(t_ps *ps, int value)
 			target_p++;
 		}
 	}
-	printf("~~a_target~~~~~~~~~~~~~\n");
-	printf_stack(ps->a, 'A');
-	printf_stack(ps->b, 'B');
+	// printf("~~a_target~~~~~~~~~~~~~\n");
+	// printf_stack(ps->a, 'A');
+	// printf_stack(ps->b, 'B');
 	pa(ps);
-	printf("~~ps~~~~~~~~~~~~~\n");
-	printf_stack(ps->a, 'A');
-	printf_stack(ps->b, 'B');
+	// printf("~~ps~~~~~~~~~~~~~\n");
+	// printf_stack(ps->a, 'A');
+	// printf_stack(ps->b, 'B');
 	reverse_operations(ps, ra_count, rra_count);
-	printf("~~reverse~~~~~~~~~~~~~\n");
-	printf_stack(ps->a, 'A');
-	printf_stack(ps->b, 'B');
+	// printf("~~reverse~~~~~~~~~~~~~\n");
+	// printf_stack(ps->a, 'A');
+	// printf_stack(ps->b, 'B');
 }
 
 //その要素をB内の先頭に移動
@@ -134,31 +134,4 @@ void	move_to_b_top(t_ps *ps, t_node *target)
 			pos++;
 		}
 	}
-}
-
-// A内の適切な位置に移動
-
-void	optimize_and_move_b_to_a(t_ps *ps)
-{
-	t_node	*inserted_p;
-	int		inserted_value;
-
-	if (ps->b->size == 0)
-	{
-		return ; // Bスタックが空の場合、何もしない
-	}
-	calculate_move_costs(ps);
-	inserted_p = find_best_element(ps->b);
-	inserted_value = (int)(intptr_t)inserted_p->content;
-	// printf("m: best_element %d\n", (int)(intptr_t)inserted_p->content);
-	// int b_size_before = ps->b->size;
-	move_to_b_top(ps, inserted_p);
-	// printf("After move_to_b_top: B size: %d\n", ps->b->size);
-	// int a_size_before = ps->a->size;
-	move_to_a_target(ps, (int)(intptr_t)inserted_p->content);
-	// printf("After move_to_a_target: A size: %d\n", ps->a->size);
-	// if (ps->b->size == b_size_before && ps->a->size == a_size_before) {
-	//     printf("Error: Stacks did not change size\n");
-	//     exit(1);
-	// }
 }
