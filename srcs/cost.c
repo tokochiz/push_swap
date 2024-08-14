@@ -19,6 +19,22 @@
 value が現在の要素より大きく、かつスタックの先頭要素よりも小さい場合
 value が現在の要素より小さく、かつ次の要素よりも大きい場合
 */
+int	find_current_min_costs(t_ps *ps)
+{
+	int	min;
+
+	if(ps->costs == NULL)
+		return 0;
+
+	min = ps->costs->cost1;
+	if (ps->costs->cost2 < min)
+		min = ps->costs->cost2;
+	if (ps->costs->cost3 < min)
+		min = ps->costs->cost3;
+	if (ps->costs->cost4 < min)
+		min = ps->costs->cost4;
+	return (min);
+}
 
 int	find_target_position(t_stack *stack, int value)
 {
@@ -34,10 +50,11 @@ int	find_target_position(t_stack *stack, int value)
 	min = find_min(stack);
 	max = find_max(stack);
 	// 値がスタックの最小値より小さいとき、最小値の直前（最大値の後）に挿入
-	if (value < min){
- // 最大値の次の位置（つまり先頭）に挿入する
-        return (find_max_position(stack) + 1) % stack->size;
- 	}
+	if (value < min)
+	{
+		// 最大値の次の位置（つまり先頭）に挿入する
+		return ((find_max_position(stack) + 1) % stack->size);
+	}
 	if (value > max)
 		return (0); //スタックの先頭にある
 	while (current->next != NULL)
@@ -48,41 +65,33 @@ int	find_target_position(t_stack *stack, int value)
 		current = current->next;
 		pos++;
 	}
-	return (pos + 1); // 最後の位置を返す
+	return (pos + 1); 
 }
 
 void	calculate_move_costs(t_ps *ps)
 {
 	t_node	*current;
 	int		position;
-	int		b_size;
-	int		cost_b;
-	int		cost_a;
 	int		target_p;
 
 	current = ps->b->top;
 	position = 0;
-	b_size = ps->b->size;
-	while (current)
+	while (current != NULL)
 	{
-		if (position <= b_size / 2)
-			cost_b = position;
-		else
-			cost_b = b_size - position;
-		target_p = find_target_position(ps->a,
-				(int)(intptr_t)current->content);
-		//適切な挿入位置を見つけ
-		if (target_p <= ps->a->size / 2)
-			cost_a = target_p;
-		else
-			cost_a = ps->a->size - target_p;
-		current->cost = cost_a + cost_b;
-		current = current->next;
+		
+		target_p = find_target_position(ps->a, (int)(intptr_t)current->content);
+		printf("calculate costs target_p:%d\n", target_p);
+		calculate_costs1(ps, position, target_p);
+		calculate_costs2(ps, position, target_p);
+		calculate_costs3(ps, position, target_p);
+		calculate_costs4(ps, position, target_p);
+		current->cost = find_current_min_costs(ps);
 		position++;
+		current = current->next;
 	}
 }
 
-t_node	*find_best_element(t_stack *stack)
+t_node	*find_min_cost(t_stack *stack)
 {
 	t_node	*cost_min;
 	t_node	*current;
@@ -99,8 +108,5 @@ t_node	*find_best_element(t_stack *stack)
 	}
 	if (cost_min == NULL)
 		put_error_and_exit(ERR_STACK);
-	// printf("Best element: %d with cost: %d\n", (int)(intptr_t)cost_min->content,
-	// 	cost_min->cost);
 	return (cost_min);
 }
-

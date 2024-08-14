@@ -14,6 +14,7 @@ SRCFILES = main.c \
 			find_median.c \
 			find_min_max.c \
 			cost.c \
+			cost_pattern.c \
 			move.c
 
 OPFILES = sa_sb_ss.c \

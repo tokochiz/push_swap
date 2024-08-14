@@ -41,7 +41,8 @@ void	initialize(t_ps *ps)
 	ps->a = (t_stack *)malloc(sizeof(t_stack));
 	ps->b = (t_stack *)malloc(sizeof(t_stack));
 	ps->operation_count = malloc(sizeof(int));
-	if (ps->a == NULL || ps->b == NULL || ps->operation_count == NULL)
+	ps->costs = (t_costs *)malloc(sizeof(t_costs));
+	if (ps->a == NULL || ps->b == NULL || ps->operation_count == NULL || ps->costs == NULL)
 		put_error_and_exit(ERR_MALLOC);
 	ps->a->top = NULL;
 	ps->a->size = 0;

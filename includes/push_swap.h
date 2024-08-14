@@ -43,10 +43,19 @@ typedef struct s_stack
 	int			*array;
 }				t_stack;
 
+typedef struct s_costs
+{
+	int			cost1;
+	int			cost2;
+	int			cost3;
+	int			cost4;
+}				t_costs;
+
 typedef struct s_ps
 {
 	t_stack		*a;
 	t_stack		*b;
+	t_costs		*costs;
 	char		**operation;
 	int			*operation_count;
 	int			group1;
@@ -99,10 +108,17 @@ void			move_a_to_b(t_ps *ps);
 void			optimize_and_move_b_to_a(t_ps *ps);
 void			sort_stack(t_ps *ps);
 
+// cost_pattern
+void			calculate_costs1(t_ps *ps, int position, int target_p);
+void			calculate_costs2(t_ps *ps, int position, int target_p);
+void			calculate_costs3(t_ps *ps, int position, int target_p);
+void			calculate_costs4(t_ps *ps, int position, int target_p);
+
 // cost
+int				find_current_min_costs(t_ps *ps);
 int				find_target_position(t_stack *stack, int value);
 void			calculate_move_costs(t_ps *ps);
-t_node			*find_best_element(t_stack *stack);
+t_node			*find_min_cost(t_stack *stack);
 
 // move
 void			reverse_operations(t_ps *ps, int ra_count, int rra_count);
