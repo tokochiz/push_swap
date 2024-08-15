@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctokoyod <ctokoyod@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:05:12 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/06 23:43:43 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/15 20:32:07 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_costs
 	int			cost2;
 	int			cost3;
 	int			cost4;
+	int			type;
 }				t_costs;
 
 typedef struct s_ps
@@ -115,7 +116,7 @@ void			calculate_costs3(t_ps *ps, int position, int target_p);
 void			calculate_costs4(t_ps *ps, int position, int target_p);
 
 // cost
-int				find_current_min_costs(t_ps *ps);
+void			find_current_min_costs(t_ps *ps, t_node *current);
 int				find_target_position(t_stack *stack, int value);
 void			calculate_move_costs(t_ps *ps);
 t_node			*find_min_cost(t_stack *stack);
@@ -123,9 +124,8 @@ t_node			*find_min_cost(t_stack *stack);
 // move
 void			reverse_operations(t_ps *ps, int ra_count, int rra_count);
 int				find_insertion_position(t_stack *stack, int value);
-void			move_to_b_top(t_ps *ps, t_node *target);
-void			move_to_a_target(t_ps *ps, int value);
-
+void			move_to_b_top(t_ps *ps, t_node *target, int pattern);
+void			move_to_a_target(t_ps *ps, int value, int pattern);
 // sa, sb, ss
 void			stack_swap(t_node **top);
 void			sa(t_ps *ps);

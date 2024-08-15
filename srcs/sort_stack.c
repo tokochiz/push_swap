@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctokoyod <ctokoyod@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:49:24 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/06 22:48:53 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/15 20:40:44 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void	optimize_and_move_b_to_a(t_ps *ps)
 {
 	t_node	*inserted_p;
 	int		inserted_value;
+	int pattern;
 
 	if (ps->b->size == 0)
 	{
@@ -130,8 +131,10 @@ void	optimize_and_move_b_to_a(t_ps *ps)
 	calculate_move_costs(ps);
 	inserted_p = find_min_cost(ps->b);
 	inserted_value = (int)(intptr_t)inserted_p->content;
-	move_to_b_top(ps, inserted_p);
-	move_to_a_target(ps, (int)(intptr_t)inserted_p->content);
+	pattern = inserted_p->type;
+	printf("~pattern ~!!!!!!%d , %d \n", (int)(intptr_t)inserted_p->content, pattern);
+	move_to_b_top(ps, inserted_p, pattern);
+	move_to_a_target(ps, (int)(intptr_t)inserted_p->content, pattern);
 }
 
 void	sort_stack(t_ps *ps)

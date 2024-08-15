@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctokoyod <ctokoyod@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:03:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/06 23:09:01 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:46:29 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	initialize(t_ps *ps)
 	ps->b->top = NULL;
 	ps->b->size = 0;
 	*ps->operation_count = 0;
+	//ps->costs->cost1 = 0;
+	ps->costs->type = 1; // default
 }
 
 void	check_argc(int argc)

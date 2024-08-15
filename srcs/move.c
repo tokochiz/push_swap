@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctokoyod <ctokoyod@student.42.fr>          #+#  +:+       +#+        */
+/*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-08-10 11:02:22 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024-08-10 11:02:22 by ctokoyod         ###   ########.fr       */
+/*   Created: 2024/08/10 11:02:22 by ctokoyod          #+#    #+#             */
+/*   Updated: 2024/08/15 21:50:49 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	find_insertion_position(t_stack *stack, int value)
 	}
 	return (pos + 1);
 }
-void	move_to_a_target(t_ps *ps, int value)
+void	move_to_a_target(t_ps *ps, int value, int pattern)
 {
 	int	target_p;
 	int	a_size;
@@ -71,8 +71,8 @@ void	move_to_a_target(t_ps *ps, int value)
 	rra_count = 0;
 	target_p = find_insertion_position(ps->a, value);
 	a_size = ps->a->size;
-	printf("target_p %d size %d\n", target_p, a_size / 2);
-	if (target_p <= a_size / 2) // スタックの半分より上にあるか下にあるかで回転方向を決定
+	printf("value :%d target_p %d size %d\n", value, target_p, a_size / 2);
+	if (pattern == 1 || pattern == 3)
 	{
 		while (target_p > 0)
 		{
@@ -90,21 +90,23 @@ void	move_to_a_target(t_ps *ps, int value)
 			target_p++;
 		}
 	}
-	// printf("~~a_target~~~~~~~~~~~~~\n");
-	// printf_stack(ps->a, 'A');
-	// printf_stack(ps->b, 'B');
+	printf("~~a_target~~~~~~~~~~~~~\n");
+	printf_stack(ps->a, 'A');
+	printf_stack(ps->b, 'B');
 	pa(ps);
-	// printf("~~ps~~~~~~~~~~~~~\n");
-	// printf_stack(ps->a, 'A');
-	// printf_stack(ps->b, 'B');
+	printf("~~ps~~~~~~~~~~~~~\n");
+	printf_stack(ps->a, 'A');
+	printf_stack(ps->b, 'B');
+	
+
 	reverse_operations(ps, ra_count, rra_count);
-	// printf("~~reverse~~~~~~~~~~~~~\n");
-	// printf_stack(ps->a, 'A');
-	// printf_stack(ps->b, 'B');
+printf("~~reverse~~~~~~~~~~~~~\n");
+	printf_stack(ps->a, 'A');
+	printf_stack(ps->b, 'B');
 }
 
 //その要素をB内の先頭に移動
-void	move_to_b_top(t_ps *ps, t_node *target)
+void	move_to_b_top(t_ps *ps, t_node *target, int pattern)
 {
 	int		pos;
 	t_node	*current;
@@ -116,9 +118,10 @@ void	move_to_b_top(t_ps *ps, t_node *target)
 		pos++;
 		current = current->next;
 	}
+	printf("~pos!%d \n", pos);
 	if (current == NULL)
 		return ;
-	if (pos <= ps->b->size / 2)
+	if (pattern == 1 || pattern == 2)
 	{
 		while (pos > 0) // 上半分にあるとき、rb: スタックBを上に1つシフト（一番上が一番下に）
 		{
@@ -134,4 +137,7 @@ void	move_to_b_top(t_ps *ps, t_node *target)
 			pos++;
 		}
 	}
+	printf("~~btop~~~~~~~~~~~~~\n");
+	printf_stack(ps->a, 'A');
+	printf_stack(ps->b, 'B');
 }
