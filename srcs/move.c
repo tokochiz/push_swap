@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 11:02:22 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024/08/15 21:50:49 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/17 22:28:12 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,25 @@ void	reverse_operations(t_ps *ps, int ra_count, int rra_count)
 int	find_insertion_position(t_stack *stack, int value)
 {
 	t_node	*current;
-	int		pos;
+	int		position;
 
 	if (stack == NULL || stack->top == NULL)
 		put_error_and_exit(ERR_STACK);
 	current = stack->top;
-	pos = 0;
+	position = 0;
 	if (value < (int)(intptr_t)current->content)
 		return (0);
 	while (current->next != NULL)
 	{
 		if (value > (int)(intptr_t)current->content
 			&& value < (int)(intptr_t)current->next->content)
-			return (pos + 1);
+			return (position + 1);
 		current = current->next;
-		pos++;
+		position++;
 	}
-	return (pos + 1);
+	return (position + 1);
 }
+
 void	move_to_a_target(t_ps *ps, int value, int pattern)
 {
 	int	target_p;
@@ -108,33 +109,33 @@ printf("~~reverse~~~~~~~~~~~~~\n");
 //その要素をB内の先頭に移動
 void	move_to_b_top(t_ps *ps, t_node *target, int pattern)
 {
-	int		pos;
+	int		position;
 	t_node	*current;
 
-	pos = 0;
+	position = 0;
 	current = ps->b->top;
 	while (current != target && current != NULL)
 	{
-		pos++;
+		position++;
 		current = current->next;
 	}
-	printf("~pos!%d \n", pos);
+	printf("~position!%d \n", position);
 	if (current == NULL)
 		return ;
 	if (pattern == 1 || pattern == 2)
 	{
-		while (pos > 0) // 上半分にあるとき、rb: スタックBを上に1つシフト（一番上が一番下に）
+		while (position > 0) // 上半分にあるとき、rb: スタックBを上に1つシフト（一番上が一番下に）
 		{
 			rb(ps);
-			pos--;
+			position--;
 		}
 	}
 	else
 	{
-		while (pos < ps->b->size) // rrb: スタックBを下に1つシフト（一番下が一番上に）
+		while (position < ps->b->size) // rrb: スタックBを下に1つシフト（一番下が一番上に）
 		{
 			rrb(ps);
-			pos++;
+			position++;
 		}
 	}
 	printf("~~btop~~~~~~~~~~~~~\n");

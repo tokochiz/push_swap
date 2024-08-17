@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:47:52 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024/08/15 20:07:28 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/17 22:03:25 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	calculate_costs1(t_ps *ps, int position, int target_p)
 	else
 		cost_a = ps->a->size - target_p;
 	ps->costs->cost1 = cost_a + cost_b;
-	printf("cost 1 : %d \n", ps->costs->cost1);
 }
 
 void	calculate_costs2(t_ps *ps, int position, int target_p)
@@ -44,7 +43,6 @@ void	calculate_costs2(t_ps *ps, int position, int target_p)
 	else
 		cost_a = target_p;
 	ps->costs->cost2 = cost_a + cost_b;
-	printf("cost 2 : %d \n", ps->costs->cost2);
 }
 
 void	calculate_costs3(t_ps *ps, int position, int target_p)
@@ -61,7 +59,6 @@ void	calculate_costs3(t_ps *ps, int position, int target_p)
 	else
 		cost_a = ps->a->size - target_p;
 	ps->costs->cost3 = cost_a + cost_b;
-	printf("cost 3 : %d \n", ps->costs->cost3);
 }
 
 void	calculate_costs4(t_ps *ps, int position, int target_p)
@@ -78,5 +75,4 @@ void	calculate_costs4(t_ps *ps, int position, int target_p)
 	else
 		cost_a = target_p;
 	ps->costs->cost4 = cost_a + cost_b;
-	printf("cost 4 : %d \n", ps->costs->cost4);
 }

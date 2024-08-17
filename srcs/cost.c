@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 12:27:02 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024/08/15 20:07:46 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/17 22:29:21 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ value が現在の要素より小さく、かつ次の要素よりも大きい�
 void	find_current_min_costs(t_ps *ps, t_node *current)
 {
 	int	min;
-	
+
 	if (ps == NULL || ps->costs == NULL || current == NULL
 		|| current->content == NULL)
 		put_error_and_exit(ERR_STACK);
@@ -61,16 +61,13 @@ int	find_target_position(t_stack *stack, int value)
 	max = find_max(stack);
 	// 値がスタックの最小値より小さいとき、最小値の直前（最大値の後）に挿入
 	if (value < min)
-	{
-		// 最大値の次の位置（つまり先頭）に挿入する
-		return ((find_max_position(stack) + 1) % stack->size);
-	}
+		return (0);
 	if (value > max)
 		return (0); //スタックの先頭にある
 	while (current->next != NULL)
 	{
-		if (value > (int)(intptr_t)current->content
-			&& value < (int)(intptr_t)current->next)
+		if (value >= (int)(intptr_t)current->content
+			&& value < (int)(intptr_t)current->next->content)
 			return (pos + 1);
 		current = current->next;
 		pos++;
@@ -83,8 +80,8 @@ void	calculate_move_costs(t_ps *ps)
 	t_node	*current;
 	int		position;
 	int		target_p;
-	//int		min_cost_type;
 
+	// int		min_cost_type;
 	current = ps->b->top;
 	position = 0;
 	while (current != NULL)
@@ -95,8 +92,14 @@ void	calculate_move_costs(t_ps *ps)
 		calculate_costs3(ps, position, target_p);
 		calculate_costs4(ps, position, target_p);
 		find_current_min_costs(ps, current);
+		
+		printf("cost 1 : %d \n", ps->costs->cost1);
+		printf("cost 2 : %d \n", ps->costs->cost2);
+		printf("cost 3 : %d \n", ps->costs->cost3);
+		printf("cost 4 : %d \n", ps->costs->cost4);
 		printf("!![%d] target_p ;%d current->cost;%d type:%d\n",
-			(int)(intptr_t)current->content, target_p, current->cost, current->type);
+			(int)(intptr_t)current->content, target_p, current->cost,
+			current->type);
 		position++;
 		current = current->next;
 	}
