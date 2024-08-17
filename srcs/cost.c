@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 12:27:02 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024/08/17 22:29:21 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/18 02:14:09 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,31 @@ void	find_current_min_costs(t_ps *ps, t_node *current)
 int	find_target_position(t_stack *stack, int value)
 {
 	t_node	*current;
-	int		pos;
+	int		position;
 	int		min;
 	int		max;
 
 	if (stack == NULL || stack->top == NULL)
 		put_error_and_exit(ERR_STACK);
 	current = stack->top;
-	pos = 0;
+	position = 0;
 	min = find_min(stack);
 	max = find_max(stack);
 	// 値がスタックの最小値より小さいとき、最小値の直前（最大値の後）に挿入
 	if (value < min)
-		return (0);
+		return (find_max_position(stack));
+	// 値がスタックの最大値より大きいとき、最大値の直後（最小値の前）に挿入
 	if (value > max)
-		return (0); //スタックの先頭にある
+		return (find_min_position(stack));
 	while (current->next != NULL)
 	{
 		if (value >= (int)(intptr_t)current->content
 			&& value < (int)(intptr_t)current->next->content)
-			return (pos + 1);
+			return (position + 1);
 		current = current->next;
-		pos++;
+		position++;
 	}
-	return (pos + 1);
+	return (position + 1);
 }
 
 void	calculate_move_costs(t_ps *ps)
@@ -92,11 +93,10 @@ void	calculate_move_costs(t_ps *ps)
 		calculate_costs3(ps, position, target_p);
 		calculate_costs4(ps, position, target_p);
 		find_current_min_costs(ps, current);
-		
-		printf("cost 1 : %d \n", ps->costs->cost1);
-		printf("cost 2 : %d \n", ps->costs->cost2);
-		printf("cost 3 : %d \n", ps->costs->cost3);
-		printf("cost 4 : %d \n", ps->costs->cost4);
+		// printf("cost 1 : %d \n", ps->costs->cost1);
+		// printf("cost 2 : %d \n", ps->costs->cost2);
+		// printf("cost 3 : %d \n", ps->costs->cost3);
+		// printf("cost 4 : %d \n", ps->costs->cost4);
 		printf("!![%d] target_p ;%d current->cost;%d type:%d\n",
 			(int)(intptr_t)current->content, target_p, current->cost,
 			current->type);
@@ -107,20 +107,23 @@ void	calculate_move_costs(t_ps *ps)
 
 t_node	*find_min_cost(t_stack *stack)
 {
-	t_node	*cost_min;
+	int		cost_min;
+	t_node	*cost_min_p;
 	t_node	*current;
 
 	if (stack == NULL || stack->top == NULL)
 		put_error_and_exit(ERR_STACK);
 	current = stack->top;
-	cost_min = current;
+	cost_min = current->cost;
+	cost_min_p = current;
 	while (current != NULL)
 	{
-		if (cost_min == NULL || current->cost < cost_min->cost)
-			cost_min = current;
+		if (current->cost < cost_min)
+		{
+			cost_min = current->cost;
+			cost_min_p = current;
+		}
 		current = current->next;
 	}
-	if (cost_min == NULL)
-		put_error_and_exit(ERR_STACK);
-	return (cost_min);
+	return (cost_min_p);
 }

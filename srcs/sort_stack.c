@@ -6,11 +6,36 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:49:24 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/17 20:45:03 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/18 05:10:01 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+void	final_rotate(t_ps *ps)
+{
+	int	min_p;
+	int	a_size;
+
+	min_p = find_min_position(ps->a);
+	a_size = ps->a->size;
+	if (min_p <= a_size / 2)
+	{
+		while (min_p > 0)
+		{
+			ra(ps);
+			min_p--;
+		}
+	}
+	else
+	{
+		while (min_p < a_size)
+		{
+			rra(ps);
+			min_p++;
+		}
+	}
+}
 
 int	rotate_stack(t_ps *ps, int position, int found)
 {
@@ -34,7 +59,7 @@ int	rotate_stack(t_ps *ps, int position, int found)
 			i++;
 		}
 	}
-	return found;
+	return (found);
 }
 
 void	move_group(t_ps *ps, int min, int max)
@@ -119,14 +144,12 @@ void	optimize_and_move_b_to_a(t_ps *ps)
 	int		pattern;
 
 	if (ps->b->size == 0)
-	{
-		return ; // Bスタックが空の場合、何もしない
-	}
+		return ;
 	calculate_move_costs(ps);
 	inserted_p = find_min_cost(ps->b);
 	inserted_value = (int)(intptr_t)inserted_p->content;
 	pattern = inserted_p->type;
-	printf("~pattern ~%d , %d \n", (int)(intptr_t)inserted_p->content, pattern);
+	printf("~pattern ~%d , %d \n", inserted_value, pattern);
 	move_to_b_top(ps, inserted_p, pattern);
 	move_to_a_target(ps, (int)(intptr_t)inserted_p->content, pattern);
 }
@@ -146,4 +169,5 @@ void	sort_stack(t_ps *ps)
 		if (ps->b->size == 0)
 			break ;
 	}
+	final_rotate(ps);
 }

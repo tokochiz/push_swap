@@ -6,19 +6,20 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:47:52 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024/08/17 22:03:25 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/18 03:56:29 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-// stack_b を上方向に回転させ、stack_a を上方向に回転させる
 void	calculate_costs1(t_ps *ps, int position, int target_p)
 {
 	int	cost_b;
 	int	cost_a;
 
-	if (position <= ps->b->size / 2)
+	if(ps->b->size <= 1)
+		cost_b = 0;
+	else if (position <= ps->b->size / 2)
 		cost_b = position;
 	else
 		cost_b = ps->b->size - position;
@@ -26,7 +27,8 @@ void	calculate_costs1(t_ps *ps, int position, int target_p)
 		cost_a = target_p;
 	else
 		cost_a = ps->a->size - target_p;
-	ps->costs->cost1 = cost_a + cost_b;
+	ps->costs->cost1 = cost_a+ cost_b + 1;
+	//printf("cost_b%3d a%3d p %3d t%3d\n", cost_b, cost_a, position, target_p);
 }
 
 void	calculate_costs2(t_ps *ps, int position, int target_p)
@@ -34,7 +36,9 @@ void	calculate_costs2(t_ps *ps, int position, int target_p)
 	int	cost_b;
 	int	cost_a;
 
-	if (position <= ps->b->size / 2)
+	if(ps->b->size <= 1)
+		cost_b = 0;
+	else if (position <= ps->b->size / 2)
 		cost_b = position;
 	else
 		cost_b = ps->b->size - position;
@@ -42,7 +46,8 @@ void	calculate_costs2(t_ps *ps, int position, int target_p)
 		cost_a = ps->a->size - target_p;
 	else
 		cost_a = target_p;
-	ps->costs->cost2 = cost_a + cost_b;
+	ps->costs->cost2 = cost_a + cost_b + 1;
+	//printf("cost_b%3d a%3d p %3d t%3d\n", cost_b, cost_a, position, target_p);
 }
 
 void	calculate_costs3(t_ps *ps, int position, int target_p)
@@ -50,7 +55,9 @@ void	calculate_costs3(t_ps *ps, int position, int target_p)
 	int	cost_b;
 	int	cost_a;
 
-	if (position <= ps->b->size / 2)
+	if(ps->b->size <= 1)
+		cost_b = 0;
+	else if (position <= ps->b->size / 2)
 		cost_b = ps->b->size - position;
 	else
 		cost_b = position;
@@ -58,7 +65,8 @@ void	calculate_costs3(t_ps *ps, int position, int target_p)
 		cost_a = target_p;
 	else
 		cost_a = ps->a->size - target_p;
-	ps->costs->cost3 = cost_a + cost_b;
+	ps->costs->cost3 = cost_a + cost_b + 1;
+	//printf("cost_b%3d a%3d p %3d t%3d\n", cost_b, cost_a, position, target_p);
 }
 
 void	calculate_costs4(t_ps *ps, int position, int target_p)
@@ -66,7 +74,9 @@ void	calculate_costs4(t_ps *ps, int position, int target_p)
 	int	cost_b;
 	int	cost_a;
 
-	if (position <= ps->b->size / 2)
+	if(ps->b->size <= 1)
+		cost_b = 0;
+	else if (position <= ps->b->size / 2)
 		cost_b = ps->b->size - position;
 	else
 		cost_b = position;
@@ -74,5 +84,6 @@ void	calculate_costs4(t_ps *ps, int position, int target_p)
 		cost_a = ps->a->size - target_p;
 	else
 		cost_a = target_p;
-	ps->costs->cost4 = cost_a + cost_b;
+	ps->costs->cost4 = cost_a + cost_b + 1;
+	//printf("cost_b%3d a%3d p %3d t%3d\n", cost_b, cost_a, position, target_p);
 }

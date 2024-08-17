@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_median1.c                                     :+:      :+:    :+:   */
+/*   find_median.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctokoyod <ctokoyod@student.42.fr>          #+#  +:+       +#+        */
+/*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-07-23 12:59:06 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024-07-23 12:59:06 by ctokoyod         ###   ########.fr       */
+/*   Created: 2024/07/23 12:59:06 by ctokoyod          #+#    #+#             */
+/*   Updated: 2024/08/17 23:56:54 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ int	find_median(t_stack *stack)
 
 	if (stack == NULL || stack->top == NULL)
 		put_error_and_exit(ERR_MALLOC);
-
-	// 　スタックの要素を配列にコピー
 	values = (int *)malloc(sizeof(int) * stack->size);
 	if (values == NULL)
 		put_error_and_exit(ERR_MALLOC);
