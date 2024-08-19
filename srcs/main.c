@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:03:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/15 19:46:29 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/18 07:02:25 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ void	initialize(t_ps *ps)
 	ps->b = (t_stack *)malloc(sizeof(t_stack));
 	ps->operation_count = malloc(sizeof(int));
 	ps->costs = (t_costs *)malloc(sizeof(t_costs));
-	if (ps->a == NULL || ps->b == NULL || ps->operation_count == NULL || ps->costs == NULL)
+	if (ps->a == NULL || ps->b == NULL || ps->operation_count == NULL
+		|| ps->costs == NULL)
 		put_error_and_exit(ERR_MALLOC);
 	ps->a->top = NULL;
 	ps->a->size = 0;
 	ps->b->top = NULL;
 	ps->b->size = 0;
 	*ps->operation_count = 0;
-	//ps->costs->cost1 = 0;
-	ps->costs->type = 1; // default
+	ps->costs->type = 1;
 }
 
 void	check_argc(int argc)
@@ -81,13 +81,13 @@ int	main(int argc, char *argv[])
 	check_argc(argc);
 	initialize(&ps);
 	parse_args(argc - 1, argv + 1, &ps);
-	/****デバック用****/
-	printf_stack(ps.a, 'A');
-	printf_stack(ps.b, 'B');
+	// /****デバック用****/
+	// printf_stack(ps.a, 'A');
+	// printf_stack(ps.b, 'B');
 	if (is_sorted(&ps) != TRUE)
 	{
 		sort_stack(&ps);
-		if(is_sorted(&ps) == TRUE)
+		if (is_sorted(&ps) == TRUE)
 			ft_printf("OK\n");
 	}
 	else

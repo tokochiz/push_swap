@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:49:24 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/18 05:10:01 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/19 23:52:34 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,48 +93,42 @@ void	move_group(t_ps *ps, int min, int max)
 
 void	move_a_to_b(t_ps *ps)
 {
-	int	min;
-	int	max;
-	int	range;
+	// int	min;
+	// int	max;
+	// int	range;
 
-	// t_node	*current;
-	// int		value;
-	// int		i;
-	// current = ps->a->top;
-	// i = 0;
-	// 	while (ps->a->size > 5)
-	// {
-	// 	value = (int)(intptr_t)ps->a->top->content;
-	// 	pb(ps);
-	// 	i++;
-	// }
-	if (ps == NULL || ps->a == NULL || ps->a->top == NULL)
-		put_error_and_exit(ERR_STACK);
-	min = find_min(ps->a);
-	max = find_max(ps->a);
-	// range = max - min;
-	// ps->group1 = min + range / 4;
-	// ps->group2 = min + 2 * range / 4;
-	// ps->group3 = min + 3 * range / 4;
-	range = max - min;
-	ps->group1 = min + range / 5;
-	ps->group2 = min + 2 * range / 5;
-	ps->group3 = min + 3 * range / 5;
-	ps->group4 = min + 4 * range / 5;
-	while (ps->a->size > 5)
+	t_node	*current;
+	int		value;
+	int		i;
+	current = ps->a->top;
+	i = 0;
+		while (ps->a->size > 5)
 	{
-		printf("~group1~!!!!!!!!!!!!!!!!!\n");
-		move_group(ps, ps->group4, max + 1);
-		printf("~group2~!!!!!!!!!!!!!!!!!\n");
-		move_group(ps, ps->group3, ps->group4);
-		printf("~group3~!!!!!!!!!!!!!!!!!\n");
-		move_group(ps, ps->group2, ps->group3);
-		// move_group(ps, ps->group3, max + 1);
-		move_group(ps, ps->group1, ps->group2);
-		move_group(ps, min - 1, ps->group1);
+		value = (int)(intptr_t)ps->a->top->content;
+		pb(ps);
+		i++;
 	}
-	printf_stack(ps->a, 'A');
-	printf_stack(ps->b, 'B');
+	// if (ps == NULL || ps->a == NULL || ps->a->top == NULL)
+	// 	put_error_and_exit(ERR_STACK);
+	// min = find_min(ps->a);
+	// max = find_max(ps->a);
+	// // range = max - min;
+	// // ps->group1 = min + range / 4;
+	// // ps->group2 = min + 2 * range / 4;
+	// // ps->group3 = min + 3 * range / 4;
+	// range = max - min;
+	// ps->group1 = min + range / 5;
+	// ps->group2 = min + 2 * range / 5;
+	// ps->group3 = min + 3 * range / 5;
+	// ps->group4 = min + 4 * range / 5;
+	// while (ps->a->size > 5)
+	// {
+	// 	move_group(ps, ps->group4, max + 1);
+	// 	move_group(ps, ps->group3, ps->group4);
+	// 	move_group(ps, ps->group2, ps->group3);
+	// 	move_group(ps, ps->group1, ps->group2);
+	// 	move_group(ps, min - 1, ps->group1);
+	// }
 }
 
 void	optimize_and_move_b_to_a(t_ps *ps)
@@ -149,7 +143,6 @@ void	optimize_and_move_b_to_a(t_ps *ps)
 	inserted_p = find_min_cost(ps->b);
 	inserted_value = (int)(intptr_t)inserted_p->content;
 	pattern = inserted_p->type;
-	printf("~pattern ~%d , %d \n", inserted_value, pattern);
 	move_to_b_top(ps, inserted_p, pattern);
 	move_to_a_target(ps, (int)(intptr_t)inserted_p->content, pattern);
 }
@@ -162,10 +155,16 @@ void	sort_stack(t_ps *ps)
 		return ;
 	}
 	move_a_to_b(ps);
+		printf_stack(ps->a, 'A');
+	printf_stack(ps->b, 'B');
 	sort_small_stack(ps);
+			printf_stack(ps->a, 'A');
+	printf_stack(ps->b, 'B');
 	while (ps->b->size > 0)
 	{
 		optimize_and_move_b_to_a(ps);
+			printf_stack(ps->a, 'A');
+	printf_stack(ps->b, 'B');
 		if (ps->b->size == 0)
 			break ;
 	}

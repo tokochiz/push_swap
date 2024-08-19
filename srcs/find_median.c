@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 12:59:06 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024/08/17 23:56:54 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/18 06:52:56 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	partition(int *array, int left, int right)
 	int	i;
 	int	j;
 
-	pivot = array[right]; // 配列の最後の要素をピボットとして選択する
+	pivot = array[right]; 
 	i = left - 1;
 	j = left;
 	j = left;
@@ -44,18 +44,15 @@ int	partition(int *array, int left, int right)
 	return (i + 1);
 }
 
-// 配列からｋ番目(中央値)に小さい要素を見つけるアルゴリズム
 int	quick_sort(int *array, int left, int right, int k)
 {
 	int	pivot_i;
 	int	len;
 
 	while (left <= right)
-	{
-		// 右と左が等しい場合、その要素を返す
+	{	
 		if (left == right)
 			return (array[left]);
-		//関数を呼び出して、基準値の位置を返す
 		pivot_i = partition(array, left, right);
 		len = pivot_i - left + 1;
 		if (k == len)
@@ -88,7 +85,7 @@ int	find_median(t_stack *stack)
 	i = 0;
 	while (i < stack->size && current != NULL)
 	{
-		values[i] = (int)(intptr_t)current->content; // 数値として直接扱う
+		values[i] = (int)(intptr_t)current->content;
 		current = current->next;
 		i++;
 	}

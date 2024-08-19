@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:05:12 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/18 05:10:18 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/18 06:53:32 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ int				find_min_position(t_stack *stack);
 int				find_max_position(t_stack *stack);
 int				find_min(t_stack *stack);
 int				find_max(t_stack *stakc);
-void			update_min_max_b(t_ps *ps);
 
 // sort_stack
 void			final_rotate(t_ps *ps);

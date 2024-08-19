@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   min_max.c                                          :+:      :+:    :+:   */
+/*   find_min_max.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  ctokoyod < ctokoyod@student.42tokyo.jp    +#+  +:+       +#+        */
+/*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:54:11 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/07/16 19:55:07 by  ctokoyod        ###   ########.fr       */
+/*   Updated: 2024/08/18 06:53:35 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,4 @@ int	find_max(t_stack *stack)
 		current = current->next;
 	}
 	return (max);
-}
-
-void	update_min_max_b(t_ps *ps)
-{
-	ps->min_b = find_min(ps->b);
-	ps->max_b = find_max(ps->b);
 }
