@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:05:12 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/18 06:53:32 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/20 23:27:49 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void			check_argc(int argc);
 // errorprint_stack
 void			put_error_and_exit(const char *msg);
 
-// is_sorted
+// checker
 bool			is_sorted(t_ps *ps);
 
 // find_median
@@ -93,8 +93,6 @@ void			sort_three(t_ps *ps);
 void			sort_four(t_ps *ps);
 void			sort_five(t_ps *ps);
 void			sort_small_stack(t_ps *ps);
-
-// sort_stack
 
 // min_max
 int				find_min_position(t_stack *stack);
@@ -127,6 +125,7 @@ void			reverse_operations(t_ps *ps, int ra_count, int rra_count);
 int				find_insertion_position(t_stack *stack, int value);
 void			move_to_b_top(t_ps *ps, t_node *target, int pattern);
 void			move_to_a_target(t_ps *ps, int value, int pattern);
+
 // sa, sb, ss
 void			stack_swap(t_node **top);
 void			sa(t_ps *ps);

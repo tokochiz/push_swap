@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:03:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/18 07:02:25 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/20 23:26:33 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,6 @@ int	main(int argc, char *argv[])
 	check_argc(argc);
 	initialize(&ps);
 	parse_args(argc - 1, argv + 1, &ps);
-	// /****デバック用****/
-	// printf_stack(ps.a, 'A');
-	// printf_stack(ps.b, 'B');
 	if (is_sorted(&ps) != TRUE)
 	{
 		sort_stack(&ps);
@@ -94,24 +91,37 @@ int	main(int argc, char *argv[])
 	{
 		printf("Error\n");
 	}
-	if (ps.operation_count != NULL)
-		printf("Operation count: %d\n", *ps.operation_count);
-	printf("~~~~~~sort~~~~~~~\n");
-	printf_stack(ps.a, 'A');
-	printf_stack(ps.b, 'B');
 	free_ps(&ps);
 	return (0);
 }
+
+/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+ debag 目標は、スタックa内の数を昇順にソートすること。スタックBは最終的に空。貪欲法でソートを用いてソート
+		// ~~ cost ~~
+		// printf("cost 1 : %d \n", ps->costs->cost1);
+		// printf("cost 2 : %d \n", ps->costs->cost2);
+		// printf("cost 3 : %d \n", ps->costs->cost3);
+		// printf("cost 4 : %d \n", ps->costs->cost4);
+		// printf("!![%d] target_p ;%d current->cost;%d type:%d\n",
+		// 	(int)(intptr_t)current->content, target_p, current->cost,
+		// 	current->type);
+
+// 	reverse_operations(ps, ra_count, rra_count);
+// printf("~~reverse~~~~~~~~~~~~~\n");
+// 	printf_stack(ps->a, 'A');
+// 	printf_stack(ps->b, 'B');
 
 // __attribute__((destructor))
 // static void destructor() {
 //     system("leaks -q push_swap");
 // }
 
-/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
- debag 目標は、スタックa内の数を昇順にソートすること。スタックBは最終的に空。貪欲法でソートを用いてソートします。
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
-
+	if (ps.operation_count != NULL)
+		printf("Operation count: %d\n", *ps.operation_count);
+	printf("~~~~~~sort~~~~~~~\n");
+	printf_stack(ps.a, 'A');
+	printf_stack(ps.b, 'B');
+*/
 void	printf_stack(t_stack *stack, char stack_name)
 {
 	t_node	*current;
@@ -130,6 +140,6 @@ void	printf_stack(t_stack *stack, char stack_name)
 	}
 	printf("\n");
 }
-/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+/*
  debag
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */

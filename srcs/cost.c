@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 12:27:02 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024/08/20 22:23:06 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/20 23:21:34 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	calculate_move_costs(t_ps *ps)
 	int		position;
 	int		target_p;
 
-	// int		min_cost_type;
 	current = ps->b->top;
 	position = 0;
 	while (current != NULL)
@@ -84,13 +83,6 @@ void	calculate_move_costs(t_ps *ps)
 		calculate_costs3(ps, position, target_p);
 		calculate_costs4(ps, position, target_p);
 		find_current_min_costs(ps, current);
-		// printf("cost 1 : %d \n", ps->costs->cost1);
-		// printf("cost 2 : %d \n", ps->costs->cost2);
-		// printf("cost 3 : %d \n", ps->costs->cost3);
-		// printf("cost 4 : %d \n", ps->costs->cost4);
-		// printf("!![%d] target_p ;%d current->cost;%d type:%d\n",
-		// 	(int)(intptr_t)current->content, target_p, current->cost,
-		// 	current->type);
 		position++;
 		current = current->next;
 	}

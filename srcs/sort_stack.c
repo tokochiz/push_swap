@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:49:24 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/20 22:31:58 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/20 22:36:10 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,84 +34,6 @@ void	final_rotate(t_ps *ps)
 			rra(ps);
 			min_p++;
 		}
-	}
-}
-
-int	rotate_stack(t_ps *ps, int position, int found)
-{
-	int	i;
-
-	i = 0;
-	found = 1;
-	if (position <= ps->a->size / 2)
-	{
-		while (i < position)
-		{
-			ra(ps);
-			i++;
-		}
-	}
-	else
-	{
-		while (i < ps->a->size - position)
-		{
-			rra(ps);
-			i++;
-		}
-	}
-	return (found);
-}
-
-void	move_group(t_ps *ps, int min, int max)
-{
-	int		value;
-	int		position;
-	t_node	*current;
-	int		found;
-
-	while (ps->a->size > 5)
-	{
-		found = 0;
-		current = ps->a->top;
-		position = 0;
-		while (current != NULL)
-		{
-			value = (int)(intptr_t)current->content;
-			if (value > min && value <= max)
-			{
-				found = rotate_stack(ps, position, found);
-				pb(ps);
-				break ;
-			}
-			current = current->next;
-			position++;
-		}
-		if (found != 1)
-			break ;
-	}
-}
-void	move_group_a_to_b(t_ps *ps)
-{
-	int	min;
-	int	max;
-	int	range;
-
-	if (ps == NULL || ps->a == NULL || ps->a->top == NULL)
-		put_error_and_exit(ERR_STACK);
-	min = find_min(ps->a);
-	max = find_max(ps->a);
-	range = max - min;
-	ps->group1 = min + range / 5;
-	ps->group2 = min + 2 * range / 5;
-	ps->group3 = min + 3 * range / 5;
-	ps->group4 = min + 4 * range / 5;
-	while (ps->a->size > 5)
-	{
-		move_group(ps, ps->group4, max + 1);
-		move_group(ps, ps->group3, ps->group4);
-		move_group(ps, ps->group2, ps->group3);
-		move_group(ps, ps->group1, ps->group2);
-		move_group(ps, min - 1, ps->group1);
 	}
 }
 

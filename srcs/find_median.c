@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 12:59:06 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024/08/18 06:52:56 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/20 23:12:24 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	partition(int *array, int left, int right)
 	int	i;
 	int	j;
 
-	pivot = array[right]; 
+	pivot = array[right];
 	i = left - 1;
 	j = left;
 	j = left;
@@ -50,7 +50,7 @@ int	quick_sort(int *array, int left, int right, int k)
 	int	len;
 
 	while (left <= right)
-	{	
+	{
 		if (left == right)
 			return (array[left]);
 		pivot_i = partition(array, left, right);
@@ -80,7 +80,6 @@ int	find_median(t_stack *stack)
 	values = (int *)malloc(sizeof(int) * stack->size);
 	if (values == NULL)
 		put_error_and_exit(ERR_MALLOC);
-
 	current = stack->top;
 	i = 0;
 	while (i < stack->size && current != NULL)
@@ -94,7 +93,6 @@ int	find_median(t_stack *stack)
 		free(values);
 		put_error_and_exit(ERR_MALLOC);
 	}
-
 	quick_sort(values, 0, stack->size - 1, stack->size / 2);
 	if (stack->size % 2 == 0)
 		median = (values[stack->size / 2 - 1] + values[stack->size / 2]) / 2;
@@ -105,4 +103,3 @@ int	find_median(t_stack *stack)
 	free(values);
 	return (median);
 }
-

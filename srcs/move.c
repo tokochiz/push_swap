@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 11:02:22 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024/08/20 22:27:04 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/20 23:22:58 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,7 @@ void	move_to_a_target(t_ps *ps, int value, int pattern)
 	ra_count = 0;
 	rra_count = 0;
 	pattern = 0;
-	//	target_p = find_insertion_position(ps->a, value);
 	target_p = find_target_position(ps->a, value);
-	// printf("~~~~~~~~~~~target :%d \n", target_p);
-	// printf_stack(ps->a, 'A');
-	// printf_stack(ps->b, 'B');
 	originaltarget_p = target_p;
 	a_size = ps->a->size;
 	if (target_p <= a_size / 2)
@@ -97,17 +93,19 @@ void	move_to_a_target(t_ps *ps, int value, int pattern)
 		}
 	}
 	pa(ps);
-	printf_stack(ps->a, 'A');
-	printf_stack(ps->b, 'B');
-	printf("value :%d target_p %d size %d p %d\n", value, target_p, a_size,
-		pattern);
-	printf("~~~~~~~~~~~o :%d ra_c:%d rra_c:%d\n", originaltarget_p, ra_count,
-		rra_count);
-	// if ((originaltarget_p == 0 && value == find_max(ps->a)))
-	// reverse_operations(ps, ra_count, rra_count);
-	// if ((originaltarget_p == a_size - 1) && !is_sorted(ps))
-	// ra(ps);
 }
+
+// printf_stack(ps->a, 'A');
+// printf_stack(ps->b, 'B');
+// printf("value :%d target_p %d size %d p %d\n", value, target_p, a_size,
+// 	pattern);
+// printf("~~~~~~~~~~~o :%d ra_c:%d rra_c:%d\n", originaltarget_p, ra_count,
+// 	rra_count);
+// if ((originaltarget_p == 0 && value == find_max(ps->a)))
+// reverse_operations(ps, ra_count, rra_count);
+// if ((originaltarget_p == a_size - 1) && !is_sorted(ps))
+// ra(ps);
+
 // 	printf("value :%d target_p %d size %d p %d\n", value, target_p, a_size / 2,
 //		pattern);
 // 	printf("~~a_target~~~~~~~~~~~~~\n");
@@ -115,11 +113,6 @@ void	move_to_a_target(t_ps *ps, int value, int pattern)
 // 	printf_stack(ps->b, 'B');
 // 	pa(ps);
 // 	printf("~~ps~~~~~~~~~~~~~\n");
-// 	printf_stack(ps->a, 'A');
-// 	printf_stack(ps->b, 'B');
-
-// 	reverse_operations(ps, ra_count, rra_count);
-// printf("~~reverse~~~~~~~~~~~~~\n");
 // 	printf_stack(ps->a, 'A');
 // 	printf_stack(ps->b, 'B');
 

@@ -8,7 +8,7 @@ OP_DIR = ./$(SRC_DIR)/operations
 SRC_DIR = srcs
 SRCFILES = main.c \
 			error.c \
-			is_sorted.c \
+			checker.c \
 			sort_stack.c \
 			sort_small_stack.c \
 			find_median.c \
