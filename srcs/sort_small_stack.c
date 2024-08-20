@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_mini.c                                        :+:      :+:    :+:   */
+/*   sort_small_stack.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctokoyod <ctokoyod@student.42.fr>          #+#  +:+       +#+        */
+/*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-08-10 11:56:12 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024-08-10 11:56:12 by ctokoyod         ###   ########.fr       */
+/*   Created: 2024/08/10 11:56:12 by ctokoyod          #+#    #+#             */
+/*   Updated: 2024/08/20 20:40:49 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-// sa: スタックAの上位2要素を交換
 void	sort_two(t_ps *ps)
 {
-	if ((int)(intptr_t)ps->a->top->content > (int)(intptr_t)ps->a->top->next->content)
+	if ((int)(intptr_t)ps->a->top->content >
+	(int)(intptr_t)ps->a->top->next->content)
 		sa(ps);
 }
 

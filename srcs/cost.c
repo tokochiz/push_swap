@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 12:27:02 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024/08/20 00:21:24 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/20 22:23:06 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,19 @@ int	find_target_position(t_stack *stack, int value)
 	position = 0;
 	min = find_min(stack);
 	max = find_max(stack);
-	if (value < min)
+	if (value < min || value > max)
 	{
-		if (find_min_position(stack) == 0)
-			return (0);
-		else
-			return (find_max_position(stack));
+		return ((find_max_position(stack) + 1) % stack->size);
 	}
-	if (value > max)
-		return (find_min_position(stack));
 	while (current->next != NULL)
 	{
 		if (value >= (int)(intptr_t)current->content
 			&& value < (int)(intptr_t)current->next->content)
-			return (position + 1);
+			return ((position + 1) % stack->size);
 		current = current->next;
 		position++;
 	}
-	return (position + 1);
+	return (0);
 }
 
 void	calculate_move_costs(t_ps *ps)
@@ -89,13 +84,13 @@ void	calculate_move_costs(t_ps *ps)
 		calculate_costs3(ps, position, target_p);
 		calculate_costs4(ps, position, target_p);
 		find_current_min_costs(ps, current);
-		printf("cost 1 : %d \n", ps->costs->cost1);
-		printf("cost 2 : %d \n", ps->costs->cost2);
-		printf("cost 3 : %d \n", ps->costs->cost3);
-		printf("cost 4 : %d \n", ps->costs->cost4);
-		printf("!![%d] target_p ;%d current->cost;%d type:%d\n",
-			(int)(intptr_t)current->content, target_p, current->cost,
-			current->type);
+		// printf("cost 1 : %d \n", ps->costs->cost1);
+		// printf("cost 2 : %d \n", ps->costs->cost2);
+		// printf("cost 3 : %d \n", ps->costs->cost3);
+		// printf("cost 4 : %d \n", ps->costs->cost4);
+		// printf("!![%d] target_p ;%d current->cost;%d type:%d\n",
+		// 	(int)(intptr_t)current->content, target_p, current->cost,
+		// 	current->type);
 		position++;
 		current = current->next;
 	}

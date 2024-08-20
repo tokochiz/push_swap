@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 11:02:22 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024/08/20 00:07:33 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/20 22:27:04 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,10 @@ void	move_to_a_target(t_ps *ps, int value, int pattern)
 	rra_count = 0;
 	pattern = 0;
 	//	target_p = find_insertion_position(ps->a, value);
-	
 	target_p = find_target_position(ps->a, value);
-	printf("target :%d \n", target_p);
-		printf_stack(ps->a, 'A');
-	printf_stack(ps->b, 'B');
+	// printf("~~~~~~~~~~~target :%d \n", target_p);
+	// printf_stack(ps->a, 'A');
+	// printf_stack(ps->b, 'B');
 	originaltarget_p = target_p;
 	a_size = ps->a->size;
 	if (target_p <= a_size / 2)
@@ -100,12 +99,14 @@ void	move_to_a_target(t_ps *ps, int value, int pattern)
 	pa(ps);
 	printf_stack(ps->a, 'A');
 	printf_stack(ps->b, 'B');
-	printf("value :%d target_p %d size %d p %d\n", value, target_p, a_size, pattern);
-	printf("o :%d \n", originaltarget_p);
-	// if (originaltarget_p != 0 && target_p != a_size - 1)
-	// 	reverse_operations(ps, ra_count, rra_count);
+	printf("value :%d target_p %d size %d p %d\n", value, target_p, a_size,
+		pattern);
+	printf("~~~~~~~~~~~o :%d ra_c:%d rra_c:%d\n", originaltarget_p, ra_count,
+		rra_count);
+	// if ((originaltarget_p == 0 && value == find_max(ps->a)))
+	// reverse_operations(ps, ra_count, rra_count);
 	// if ((originaltarget_p == a_size - 1) && !is_sorted(ps))
-		// ra(ps);
+	// ra(ps);
 }
 // 	printf("value :%d target_p %d size %d p %d\n", value, target_p, a_size / 2,
 //		pattern);
@@ -122,7 +123,6 @@ void	move_to_a_target(t_ps *ps, int value, int pattern)
 // 	printf_stack(ps->a, 'A');
 // 	printf_stack(ps->b, 'B');
 
-//その要素をB内の先頭に移動
 void	move_to_b_top(t_ps *ps, t_node *target, int pattern)
 {
 	int		position;
@@ -131,16 +131,13 @@ void	move_to_b_top(t_ps *ps, t_node *target, int pattern)
 	pattern = 0;
 	position = 0;
 	current = ps->b->top;
-
 	while (current != target && current != NULL)
 	{
 		position++;
 		current = current->next;
 	}
-	// printf("~position!%d p%d\n", position, pattern);
 	if (current == NULL)
 		return ;
-	// if (pattern == 1 || pattern == 2)
 	if (position <= ps->b->size / 2)
 	{
 		while (position-- > 0)
