@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:05:12 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/20 23:27:49 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/20 23:55:23 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@
 # define EXIT_FAILURE 1
 # define TRUE 1
 # define FALSE 0
-
-// typedef struct s_node
-// {
-// 	int				cost;
-// }t_node;
 
 typedef t_list	t_node;
 
@@ -68,9 +63,7 @@ typedef struct s_ps
 }				t_ps;
 
 // main
-//!!~~~~~~~~~~~~debag ~~~~~~~~~~~~
 void			printf_stack(t_stack *stack, char stack_name);
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 void			parse_args(int argc, char *argv[], t_ps *ps);
 void			initialize(t_ps *ps);
 void			check_argc(int argc);
@@ -102,9 +95,6 @@ int				find_max(t_stack *stakc);
 
 // sort_stack
 void			final_rotate(t_ps *ps);
-int				rotate_stack(t_ps *ps, int position, int found);
-void			move_group(t_ps *ps, int min, int max);
-void			move_a_to_b(t_ps *ps);
 void			optimize_and_move_b_to_a(t_ps *ps);
 void			sort_stack(t_ps *ps);
 
@@ -121,10 +111,9 @@ void			calculate_move_costs(t_ps *ps);
 t_node			*find_min_cost(t_stack *stack);
 
 // move
-void			reverse_operations(t_ps *ps, int ra_count, int rra_count);
-int				find_insertion_position(t_stack *stack, int value);
-void			move_to_b_top(t_ps *ps, t_node *target, int pattern);
-void			move_to_a_target(t_ps *ps, int value, int pattern);
+void			insert_value_in_a(t_ps *ps, int value);
+void			move_top_of_b(t_ps *ps, t_node *target);
+void			move_a_to_b(t_ps *ps);
 
 // sa, sb, ss
 void			stack_swap(t_node **top);

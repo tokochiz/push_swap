@@ -11,7 +11,6 @@ SRCFILES = main.c \
 			checker.c \
 			sort_stack.c \
 			sort_small_stack.c \
-			find_median.c \
 			find_min_max.c \
 			cost.c \
 			cost_pattern.c \

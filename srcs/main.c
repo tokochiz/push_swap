@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:03:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/20 23:26:33 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/20 23:58:02 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,10 @@ int	main(int argc, char *argv[])
 	}
 	else
 	{
-		printf("Error\n");
+		ft_printf("Error\n");
 	}
+	if (ps.operation_count != NULL)
+		ft_printf("Operation count: %d\n", *ps.operation_count);
 	free_ps(&ps);
 	return (0);
 }
@@ -121,7 +123,7 @@ int	main(int argc, char *argv[])
 	printf("~~~~~~sort~~~~~~~\n");
 	printf_stack(ps.a, 'A');
 	printf_stack(ps.b, 'B');
-*/
+
 void	printf_stack(t_stack *stack, char stack_name)
 {
 	t_node	*current;
@@ -140,6 +142,6 @@ void	printf_stack(t_stack *stack, char stack_name)
 	}
 	printf("\n");
 }
-/*
+
  debag
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
