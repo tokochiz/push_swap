@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:03:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/27 21:14:34 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/27 21:28:19 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,33 @@
 
 void	free_ps(t_ps *ps)
 {
-	if (ps->a != NULL)
+	if (ps != NULL)
 	{
-		if (ps->a->top != NULL){
-			ft_lstclear(&(ps->a->top), NULL);
+		if (ps->a != NULL)
+		{
+			if (ps->a->top != NULL)
+				ft_lstclear(&(ps->a->top), NULL);
+			free(ps->a);
+			//ps->a = NULL;
 		}
-		free(ps->a);
+		if (ps->b != NULL)
+		{
+			if (ps->b->top != NULL)
+				ft_lstclear(&(ps->b->top), NULL);
+			free(ps->b);
+			//ps->b = NULL;
+		}
+		if (ps->operation_count != NULL)
+		{
+			free(ps->operation_count);
+			//ps->operation_count = NULL;
+		}
+		if (ps->costs != NULL)
+		{
+			free(ps->costs);
+			//ps->costs = NULL;
+		}
 	}
-	if (ps->b != NULL)
-	{
-		if (ps->b->top != NULL)
-			ft_lstclear(&(ps->b->top), NULL);
-		free(ps->b);
-	}
-	if (ps->operation_count != NULL)
-		free(ps->operation_count);
-	if (ps->costs != NULL)
-		free(ps->costs);
 }
 
 void	parse_args(int argc, char *argv[], t_ps *ps)
@@ -47,7 +57,8 @@ void	parse_args(int argc, char *argv[], t_ps *ps)
 		if (is_error != 0)
 			put_error_and_exit(ERR_LST1);
 		new_node = ft_lstnew((void *)(intptr_t)value);
-		if (new_node == NULL){
+		if (new_node == NULL)
+		{
 			free_ps(ps);
 			put_error_and_exit(ERR_LST2);
 		}
