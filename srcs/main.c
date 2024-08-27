@@ -6,11 +6,32 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:03:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/20 23:58:02 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/27 21:14:34 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+void	free_ps(t_ps *ps)
+{
+	if (ps->a != NULL)
+	{
+		if (ps->a->top != NULL){
+			ft_lstclear(&(ps->a->top), NULL);
+		}
+		free(ps->a);
+	}
+	if (ps->b != NULL)
+	{
+		if (ps->b->top != NULL)
+			ft_lstclear(&(ps->b->top), NULL);
+		free(ps->b);
+	}
+	if (ps->operation_count != NULL)
+		free(ps->operation_count);
+	if (ps->costs != NULL)
+		free(ps->costs);
+}
 
 void	parse_args(int argc, char *argv[], t_ps *ps)
 {
@@ -26,8 +47,8 @@ void	parse_args(int argc, char *argv[], t_ps *ps)
 		if (is_error != 0)
 			put_error_and_exit(ERR_LST1);
 		new_node = ft_lstnew((void *)(intptr_t)value);
-		if (new_node == NULL)
-		{
+		if (new_node == NULL){
+			free_ps(ps);
 			put_error_and_exit(ERR_LST2);
 		}
 		ft_lstadd_back(&(ps->a->top), new_node);
@@ -55,23 +76,10 @@ void	initialize(t_ps *ps)
 
 void	check_argc(int argc)
 {
+	if (argc == 1)
+		normal_exit();
 	if (argc < 2)
 		put_error_and_exit(ERR_ARGS);
-}
-
-void	free_ps(t_ps *ps)
-{
-	if (ps->a == NULL)
-	{
-		ft_lstclear(&(ps->a->top), NULL);
-		free(ps->a);
-	}
-	if (ps->b == NULL)
-	{
-		ft_lstclear(&(ps->b->top), NULL);
-		free(ps->b);
-	}
-	free(ps->operation_count);
 }
 
 int	main(int argc, char *argv[])
@@ -84,64 +92,7 @@ int	main(int argc, char *argv[])
 	if (is_sorted(&ps) != TRUE)
 	{
 		sort_stack(&ps);
-		if (is_sorted(&ps) == TRUE)
-			ft_printf("OK\n");
 	}
-	else
-	{
-		ft_printf("Error\n");
-	}
-	if (ps.operation_count != NULL)
-		ft_printf("Operation count: %d\n", *ps.operation_count);
 	free_ps(&ps);
 	return (0);
 }
-
-/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
- debag 目標は、スタックa内の数を昇順にソートすること。スタックBは最終的に空。貪欲法でソートを用いてソート
-		// ~~ cost ~~
-		// printf("cost 1 : %d \n", ps->costs->cost1);
-		// printf("cost 2 : %d \n", ps->costs->cost2);
-		// printf("cost 3 : %d \n", ps->costs->cost3);
-		// printf("cost 4 : %d \n", ps->costs->cost4);
-		// printf("!![%d] target_p ;%d current->cost;%d type:%d\n",
-		// 	(int)(intptr_t)current->content, target_p, current->cost,
-		// 	current->type);
-
-// 	reverse_operations(ps, ra_count, rra_count);
-// printf("~~reverse~~~~~~~~~~~~~\n");
-// 	printf_stack(ps->a, 'A');
-// 	printf_stack(ps->b, 'B');
-
-// __attribute__((destructor))
-// static void destructor() {
-//     system("leaks -q push_swap");
-// }
-
-	if (ps.operation_count != NULL)
-		printf("Operation count: %d\n", *ps.operation_count);
-	printf("~~~~~~sort~~~~~~~\n");
-	printf_stack(ps.a, 'A');
-	printf_stack(ps.b, 'B');
-
-void	printf_stack(t_stack *stack, char stack_name)
-{
-	t_node	*current;
-
-	if (stack == NULL)
-	{
-		printf("Error: Invalid stack\n");
-		return ;
-	}
-	current = stack->top;
-	printf("Stack %c (size: %d): ", stack_name, stack->size);
-	while (current != NULL)
-	{
-		printf("%ld ", (intptr_t)current->content);
-		current = current->next;
-	}
-	printf("\n");
-}
-
- debag
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */

@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:05:12 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/20 23:55:23 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/27 20:04:38 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void			check_argc(int argc);
 
 // errorprint_stack
 void			put_error_and_exit(const char *msg);
+void	normal_exit(void);
 
 // checker
 bool			is_sorted(t_ps *ps);
