@@ -6,12 +6,11 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:03:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/28 21:38:44 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/28 21:41:19 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
 
 void	make_new_node(char **split_args, t_ps *ps)
 {
