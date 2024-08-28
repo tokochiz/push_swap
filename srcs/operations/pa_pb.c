@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_pb.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctokoyod <ctokoyod@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 19:53:59 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/06 23:36:14 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/28 21:12:22 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	pa(t_ps *ps)
 	t_node	*first;
 
 	if (ps->b->size < 1)
-		put_error_and_exit(ERR_OP_P);
+		put_error_and_exit(ps);
 	first = ps->b->top;
 	ps->b->top = first->next;
 	ps->b->size--;
@@ -33,7 +33,7 @@ void	pb(t_ps *ps)
 	t_node	*first;
 
 	if (ps->a->size < 1)
-		put_error_and_exit(ERR_OP_P);
+		put_error_and_exit(ps);
 	first = ps->a->top;
 	ps->a->top = first->next;
 	ps->a->size--;

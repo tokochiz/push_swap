@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:05:12 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/27 20:04:38 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/28 21:30:08 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdbool.h>
 # include <stdio.h>
 
-# define ERR_ARGS "Invalid number of arguments\n"
+# define ERR_ARGC "Invalid number of arguments\n"
 # define ERR_MALLOC "Error malloc "
 # define ERR_LST1 "Error list1"
 # define ERR_LST2 "Error list2"
@@ -66,14 +66,16 @@ typedef struct s_ps
 void			printf_stack(t_stack *stack, char stack_name);
 void			parse_args(int argc, char *argv[], t_ps *ps);
 void			initialize(t_ps *ps);
-void			check_argc(int argc);
+void			check_argc(int argc, t_ps *ps);
+void			free_ps(t_ps *ps);
 
 // errorprint_stack
-void			put_error_and_exit(const char *msg);
-void	normal_exit(void);
+void			put_error_and_exit(t_ps *ps);
+void			normal_exit(void);
 
 // checker
 bool			is_sorted(t_ps *ps);
+int				is_valid_number(const char *str);
 
 // find_median
 void			swap(int *a, int *b);
@@ -89,10 +91,10 @@ void			sort_five(t_ps *ps);
 void			sort_small_stack(t_ps *ps);
 
 // min_max
-int				find_min_position(t_stack *stack);
-int				find_max_position(t_stack *stack);
-int				find_min(t_stack *stack);
-int				find_max(t_stack *stakc);
+int				find_min_position(t_stack *stack, t_ps *ps);
+int				find_max_position(t_stack *stack, t_ps *ps);
+int				find_min(t_stack *stack, t_ps *ps);
+int				find_max(t_stack *stakc, t_ps *ps);
 
 // sort_stack
 void			final_rotate(t_ps *ps);
@@ -107,9 +109,9 @@ void			calculate_costs4(t_ps *ps, int position, int target_p);
 
 // cost
 void			find_current_min_costs(t_ps *ps, t_node *current);
-int				find_target_position(t_stack *stack, int value);
+int				find_target_position(t_stack *stack, int value, t_ps *ps);
 void			calculate_move_costs(t_ps *ps);
-t_node			*find_min_cost(t_stack *stack);
+t_node			*find_min_cost(t_stack *stack, t_ps *ps);
 
 // move
 void			insert_value_in_a(t_ps *ps, int value);
@@ -117,7 +119,7 @@ void			move_top_of_b(t_ps *ps, t_node *target);
 void			move_a_to_b(t_ps *ps);
 
 // sa, sb, ss
-void			stack_swap(t_node **top);
+void			stack_swap(t_node **top, t_ps *ps);
 void			sa(t_ps *ps);
 void			sb(t_ps *ps);
 void			ss(t_ps *ps);
@@ -127,13 +129,13 @@ void			pa(t_ps *ps);
 void			pb(t_ps *ps);
 
 // ra, rb, rr
-void			rotate_top_to_bottom(t_stack *stack);
+void			rotate_top_to_bottom(t_stack *stack, t_ps *ps);
 void			ra(t_ps *ps);
 void			rb(t_ps *ps);
 void			rr(t_ps *ps);
 
 // rra, rrb, rrr
-void			rotate_bottom_to_top(t_stack *stack);
+void			rotate_bottom_to_top(t_stack *stack, t_ps *ps);
 void			rra(t_ps *ps);
 void			rrb(t_ps *ps);
 void			rrr(t_ps *ps);

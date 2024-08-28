@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   rra_rrb_rrr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctokoyod <ctokoyod@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 10:37:23 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024/08/06 23:36:26 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/28 21:29:59 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	rotate_bottom_to_top(t_stack *stack)
+void	rotate_bottom_to_top(t_stack *stack, t_ps *ps)
 {
 	t_node	*first;
 	t_node	*last;
 	t_node	*second_last;
 
 	if (stack->size < 2 || stack->top == NULL || stack->top->next == NULL)
-		put_error_and_exit(ERR_OP);
+		put_error_and_exit(ps);
 	first = stack->top;
 	last = ft_lstlast(first);
 	second_last = first;
@@ -35,8 +35,8 @@ void	rotate_bottom_to_top(t_stack *stack)
 void	rra(t_ps *ps)
 {
 	if (ps->a->size < 2)
-		put_error_and_exit(ERR_OP);
-	rotate_bottom_to_top(ps->a);
+		put_error_and_exit(ps);
+	rotate_bottom_to_top(ps->a, ps);
 	ft_printf("rra\n");
 	(*ps->operation_count)++;
 }
@@ -44,8 +44,8 @@ void	rra(t_ps *ps)
 void	rrb(t_ps *ps)
 {
 	if (ps->b->size < 2)
-		put_error_and_exit(ERR_OP);
-	rotate_bottom_to_top(ps->b);
+		put_error_and_exit(ps);
+	rotate_bottom_to_top(ps->b, ps);
 	ft_printf("rrb\n");
 	(*ps->operation_count)++;
 }
@@ -54,11 +54,11 @@ void	rrr(t_ps *ps)
 {
 	if (ps->a->size >= 2 && ps->b->size >= 2)
 	{
-		rotate_bottom_to_top(ps->a);
-		rotate_bottom_to_top(ps->b);
+		rotate_bottom_to_top(ps->a, ps);
+		rotate_bottom_to_top(ps->b, ps);
 		ft_printf("rrr\n");
 		(*ps->operation_count)++;
 	}
 	else
-		put_error_and_exit(ERR_OP);
+		put_error_and_exit(ps);
 }

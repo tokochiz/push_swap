@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 11:56:12 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024/08/20 20:40:49 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/28 21:19:11 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	sort_four(t_ps *ps)
 {
 	int	min_pos;
 
-	min_pos = find_min_position(ps->a);
+	min_pos = find_min_position(ps->a, ps);
 	if (min_pos == 1)
 		sa(ps);
 	else if (min_pos == 2)
@@ -69,7 +69,7 @@ void	sort_five(t_ps *ps)
 {
 	int	min_pos;
 
-	min_pos = find_min_position(ps->a);
+	min_pos = find_min_position(ps->a, ps);
 	if (min_pos == 1)
 		sa(ps);
 	else if (min_pos == 2)

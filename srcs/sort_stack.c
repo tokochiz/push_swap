@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:49:24 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/20 23:51:42 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/28 21:27:34 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	final_rotate(t_ps *ps)
 	int	min_p;
 	int	a_size;
 
-	min_p = find_min_position(ps->a);
+	min_p = find_min_position(ps->a, ps);
 	a_size = ps->a->size;
 	if (min_p <= a_size / 2)
 	{
@@ -45,7 +45,7 @@ void	optimize_and_move_b_to_a(t_ps *ps)
 	if (ps->b->size == 0)
 		return ;
 	calculate_move_costs(ps);
-	inserted_p = find_min_cost(ps->b);
+	inserted_p = find_min_cost(ps->b, ps);
 	inserted_value = (int)(intptr_t)inserted_p->content;
 	move_top_of_b(ps, inserted_p);
 	insert_value_in_a(ps, (int)(intptr_t)inserted_p->content);

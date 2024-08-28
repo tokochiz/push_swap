@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ra_rb_rr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctokoyod <ctokoyod@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 20:37:45 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/06 23:37:01 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/28 21:29:19 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	rotate_top_to_bottom(t_stack *stack)
+void	rotate_top_to_bottom(t_stack *stack, t_ps *ps)
 {
 	t_list	*first;
 	t_list	*last;
 
 	if (stack->size < 2 || stack->top == NULL || (stack->top->next == NULL))
-		put_error_and_exit(ERR_OP);
+		put_error_and_exit(ps);
 	first = stack->top;
 	last = ft_lstlast(first);
 	stack->top = first->next;
@@ -29,8 +29,8 @@ void	rotate_top_to_bottom(t_stack *stack)
 void	ra(t_ps *ps)
 {
 	if (ps->a->size < 2)
-		put_error_and_exit(ERR_OP);
-	rotate_top_to_bottom(ps->a);
+		put_error_and_exit(ps);
+	rotate_top_to_bottom(ps->a, ps);
 	ft_printf("ra\n");
 	(*ps->operation_count)++;
 }
@@ -38,8 +38,8 @@ void	ra(t_ps *ps)
 void	rb(t_ps *ps)
 {
 	if (ps->b->size < 2)
-		put_error_and_exit(ERR_OP);
-	rotate_top_to_bottom(ps->b);
+		put_error_and_exit(ps);
+	rotate_top_to_bottom(ps->b, ps);
 	ft_printf("rb\n");
 	(*ps->operation_count)++;
 }
@@ -48,11 +48,11 @@ void	rr(t_ps *ps)
 {
 	if (ps->a->size >= 2 && ps->b->size >= 2)
 	{
-		rotate_top_to_bottom(ps->a);
-		rotate_top_to_bottom(ps->b);
+		rotate_top_to_bottom(ps->a, ps);
+		rotate_top_to_bottom(ps->b, ps);
 		ft_printf("rra\n");
 		(*ps->operation_count)++;
 	}
 	else
-		put_error_and_exit(ERR_OP);
+		put_error_and_exit(ps);
 }

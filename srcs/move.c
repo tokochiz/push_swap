@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 11:02:22 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024/08/20 23:52:35 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/28 21:22:10 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	insert_value_in_a(t_ps *ps, int value)
 	int	a_size;
 	int	originaltarget_p;
 
-	target_p = find_target_position(ps->a, value);
+	target_p = find_target_position(ps->a, value, ps);
 	originaltarget_p = target_p;
 	a_size = ps->a->size;
 	if (target_p <= a_size / 2)
