@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:05:12 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/28 21:30:08 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/28 21:39:31 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,13 @@ typedef struct s_ps
 
 // main
 void			printf_stack(t_stack *stack, char stack_name);
+void			make_new_node(char **split_args, t_ps *ps);
 void			parse_args(int argc, char *argv[], t_ps *ps);
 void			initialize(t_ps *ps);
 void			check_argc(int argc, t_ps *ps);
-void			free_ps(t_ps *ps);
 
-// errorprint_stack
+// error
+void			free_ps(t_ps *ps);
 void			put_error_and_exit(t_ps *ps);
 void			normal_exit(void);
 
