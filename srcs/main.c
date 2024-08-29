@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:03:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/28 21:41:19 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/29 20:53:19 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	parse_args(int argc, char *argv[], t_ps *ps)
 				make_new_node(&split_args[j], ps);
 			j++;
 		}
+		free_string_array(split_args);
 		i++;
 	}
 	ps->a->size = ft_lstsize(ps->a->top);

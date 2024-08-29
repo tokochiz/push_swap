@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:05:12 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/28 21:39:31 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/29 20:46:30 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void			initialize(t_ps *ps);
 void			check_argc(int argc, t_ps *ps);
 
 // error
+void			free_string_array(char **arr);
 void			free_ps(t_ps *ps);
 void			put_error_and_exit(t_ps *ps);
 void			normal_exit(void);

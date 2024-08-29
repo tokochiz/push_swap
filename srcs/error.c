@@ -6,11 +6,26 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:45:07 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/28 21:38:54 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/08/29 20:52:23 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+void	free_string_array(char **arr)
+{
+	int	i;
+
+	if (arr == NULL)
+		return ;
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
 
 void	free_ps(t_ps *ps)
 {
