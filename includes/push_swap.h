@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:05:12 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/29 20:46:30 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/09/01 17:28:53 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void			put_error_and_exit(t_ps *ps);
 void			normal_exit(void);
 
 // checker
+int				is_duplicate(t_ps *ps, int num);
 bool			is_sorted(t_ps *ps);
 int				is_valid_number(const char *str);
 
