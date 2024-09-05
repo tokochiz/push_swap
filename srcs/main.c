@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:03:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/09/01 17:37:27 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/09/05 18:56:58 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	make_new_node(char **split_args, t_ps *ps)
 	if (!is_valid_number(*split_args))
 		put_error_and_exit(ps);
 	value = ft_atoi_with_error(*split_args, &is_error);
+	printf("%d ", value);
 	if (is_error != 0 || value < INT_MIN || value > INT_MAX)
 		put_error_and_exit(ps);
 	new_node = ft_lstnew((void *)(intptr_t)value);
@@ -94,3 +95,4 @@ int	main(int argc, char *argv[])
 	free_ps(&ps);
 	return (0);
 }
+
