@@ -6,24 +6,25 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:03:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/09/05 18:56:58 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:45:02 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	make_new_node(char **split_args, t_ps *ps)
+void	make_new_node(char *str, t_ps *ps)
 {
 	int		value;
-	int		is_error;
 	t_list	*new_node;
 
-	if (!is_valid_number(*split_args))
+	// int		is_error;
+	if (!is_valid_number(str))
 		put_error_and_exit(ps);
-	value = ft_atoi_with_error(*split_args, &is_error);
+		
+	if(!ft_atoi_with_error(str, &value))
+		put_error_and_exit(ps);
 	printf("%d ", value);
-	if (is_error != 0 || value < INT_MIN || value > INT_MAX)
-		put_error_and_exit(ps);
+
 	new_node = ft_lstnew((void *)(intptr_t)value);
 	if (new_node == NULL)
 		put_error_and_exit(ps);
@@ -32,27 +33,15 @@ void	make_new_node(char **split_args, t_ps *ps)
 
 void	parse_args(int argc, char *argv[], t_ps *ps)
 {
-	int		i;
-	int		j;
-	char	**split_args;
+	int	i;
 
-	i = 0;
+	i = 1;
 	while (i < argc)
 	{
-		if (argv[i][0] == '"')
-			split_args = ft_split(argv[i] + 1, ' ');
-		else
-			split_args = ft_split(argv[i], ' ');
-		if (split_args == NULL)
+		if (argv[i] == NULL)
 			put_error_and_exit(ps);
-		j = 0;
-		while (split_args[j] != NULL)
-		{
-			if (ft_strlen(split_args[j]) != 0)
-				make_new_node(&split_args[j], ps);
-			j++;
-		}
-		free_string_array(split_args);
+		if (ft_strlen(argv[i]) != 0)
+			make_new_node(argv[i], ps);
 		i++;
 	}
 	ps->a->size = ft_lstsize(ps->a->top);
@@ -95,4 +84,3 @@ int	main(int argc, char *argv[])
 	free_ps(&ps);
 	return (0);
 }
-
