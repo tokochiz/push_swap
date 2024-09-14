@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 20:37:09 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/09/09 19:46:02 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/09/14 17:20:17 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,21 @@
 
 int	is_duplicate(t_ps *ps, int num)
 {
-	t_node	*current;
+	t_node		*current;
+	intptr_t	current_value;
+	int			count;
 
+	count = 0;
 	current = ps->a->top;
 	while (current != NULL)
 	{
-		if (*(int *)(current->content) == num)
-			return (1);
+		current_value = (intptr_t)(current->content);
+		if (current_value == num)
+		{
+			count++;
+			if (count > 1)
+				return (1);
+		}
 		current = current->next;
 	}
 	return (0);
@@ -32,9 +40,9 @@ bool	is_sorted(t_ps *ps)
 	int		prev_value;
 
 	if (ps == NULL || ps->a == NULL || ps->a->top == NULL)
-		return (FALSE);
-	if (ps->a->size <= 1)
-		return (FALSE);
+		return (TRUE);
+	if (ps->a->size == 1)
+		return (TRUE);
 	current = ps->a->top;
 	prev_value = (intptr_t)(current->content);
 	current = current->next;
