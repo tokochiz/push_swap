@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:03:54 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/09/14 17:36:21 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:08:21 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ void	make_new_node(char *str, t_ps *ps)
 	int		value;
 	t_node	*new_node;
 
+
 	if (!ft_atoi_with_error(str, &value))
 		put_error_and_exit(ps);
+
 	new_node = ft_lstnew((void *)(intptr_t)value);
 	if (new_node == NULL)
 		put_error_and_exit(ps);

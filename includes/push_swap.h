@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:05:12 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/09/14 17:34:03 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:10:47 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void			normal_exit(void);
 // checker
 int				is_duplicate(t_ps *ps, int num);
 bool			is_sorted(t_ps *ps);
-int				is_valid_number(const char *str);
 
 // find_median
 void			swap(int *a, int *b);

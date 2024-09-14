@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 12:27:02 by ctokoyod          #+#    #+#             */
-/*   Updated: 2024/08/28 21:26:50 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:46:12 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ void	find_current_min_costs(t_ps *ps, t_node *current)
 {
 	int	min;
 
-	if (ps == NULL || ps->costs == NULL || current == NULL
-		|| current->content == NULL)
+	if (ps == NULL || current == NULL)
 		put_error_and_exit(ps);
 	min = ps->costs->cost1;
 	current->type = 1;

@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:49:24 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/08/28 21:27:34 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:34:32 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	optimize_and_move_b_to_a(t_ps *ps)
 		return ;
 	calculate_move_costs(ps);
 	inserted_p = find_min_cost(ps->b, ps);
-	inserted_value = (int)(intptr_t)inserted_p->content;
+	inserted_value = (intptr_t)inserted_p->content;
 	move_top_of_b(ps, inserted_p);
 	insert_value_in_a(ps, (int)(intptr_t)inserted_p->content);
 }
@@ -58,6 +58,7 @@ void	sort_stack(t_ps *ps)
 		sort_small_stack(ps);
 		return ;
 	}
+
 	move_a_to_b(ps);
 	sort_small_stack(ps);
 	while (ps->b->size > 0)

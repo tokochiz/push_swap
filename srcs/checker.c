@@ -6,7 +6,7 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 20:37:09 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2024/09/14 17:20:17 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:33:46 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,4 @@ bool	is_sorted(t_ps *ps)
 		current = current->next;
 	}
 	return (TRUE);
-}
-
-int	is_valid_number(const char *str)
-{
-	if (*str == '-' || *str == '+')
-		str++;
-	if (*str == '\0')
-		return (0);
-	while (*str != '\0')
-	{
-		if (!ft_isdigit(*str))
-			return (0);
-		str++;
-	}
-	return (1);
 }
